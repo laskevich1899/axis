@@ -27,7 +27,7 @@ export function BimHeroVisual() {
       viewBox="0 0 960 720"
       className="h-full w-full"
       role="img"
-      aria-label="Изометрическая BIM-модель здания с цифровыми слоями"
+      aria-label="Isometric BIM building model with digital layers"
     >
       <defs>
         <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">

@@ -1,31 +1,31 @@
-# КОНТУР — сайт BIM-компании
+# KONTUR — BIM company website
 
-Лендинг для BIM-компании **КОНТУР**: ведение моделей проектов, создание проектной документации и внедрение BIM-процессов в структуру организаций.
+Landing site for **KONTUR**, a U.S.-oriented BIM firm: project model management, construction documents, and BIM process adoption.
 
-## Стек
+## Stack
 
 - Next.js (App Router) + TypeScript
 - Tailwind CSS + shadcn/ui
 - React 19
 
-## Запуск
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Откройте [http://127.0.0.1:4321](http://127.0.0.1:4321).
+Open [http://127.0.0.1:4321](http://127.0.0.1:4321).
 
-## Скрипты
+## Scripts
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Dev-сервер на порту 4321 |
-| `npm run build` | Production-сборка |
-| `npm run start` | Запуск production-сборки |
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Dev server on port 4321 |
+| `npm run build` | Production build |
+| `npm run start` | Run production build |
 | `npm run lint` | ESLint |
 
-## Контент
+## Content
 
-Сайт на русском языке. Форма заявки работает в mock-режиме (без бэкенда) — после отправки показывается подтверждение. Email и телефон в блоке контактов — плейсхолдеры; замените на реальные данные компании.
+The site is in American English. The contact form runs in mock mode (no backend)—submission shows a confirmation. Email and phone in the contact block are placeholders; replace them with your real company details.

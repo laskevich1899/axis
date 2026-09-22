@@ -4,13 +4,13 @@ import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   display: "swap",
 });
 
 const unbounded = Unbounded({
   variable: "--font-unbounded",
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -20,22 +20,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "КОНТУР — BIM-модели, документация и внедрение процессов",
+  title: "KONTUR — BIM models, construction documents & process adoption",
   description:
-    "BIM-компания КОНТУР: ведение моделей проектов, создание проектной документации и внедрение BIM-процессов в структуру организаций.",
+    "KONTUR is a U.S. BIM firm for project model management, construction documentation, and embedding BIM processes into your organization.",
   keywords: [
     "BIM",
-    "ведение моделей",
-    "проектная документация",
-    "внедрение BIM",
-    "КОНТУР",
+    "VDC",
+    "model management",
+    "construction documents",
+    "BIM adoption",
+    "KONTUR",
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="ru"
+      lang="en"
       className={`${manrope.variable} ${unbounded.variable} ${geistMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

@@ -22,7 +22,7 @@ export function ContactForm() {
 
     if (!name || !email || !request) {
       setStatus("error");
-      setMessage("Заполните имя, email и кратко опишите задачу.");
+      setMessage("Please enter your name, email, and a short project description.");
       return;
     }
 
@@ -35,7 +35,7 @@ export function ContactForm() {
     form.reset();
     setStatus("success");
     setMessage(
-      `Спасибо, ${name}${company ? ` (${company})` : ""}. Мы свяжемся с вами по ${email} в ближайшее время.`,
+      `Thanks, ${name}${company ? ` (${company})` : ""}. We'll reach out at ${email} shortly.`,
     );
   }
 
@@ -43,11 +43,11 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm text-steel">
-          Имя *
+          Name *
           <Input
             name="name"
             autoComplete="name"
-            placeholder="Анна Иванова"
+            placeholder="Jordan Lee"
             className="h-11"
             disabled={status === "loading"}
           />
@@ -58,28 +58,28 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="anna@company.ru"
+            placeholder="jordan@firm.com"
             className="h-11"
             disabled={status === "loading"}
           />
         </label>
       </div>
       <label className="flex flex-col gap-2 text-sm text-steel">
-        Компания
+        Company
         <Input
           name="company"
           autoComplete="organization"
-          placeholder="ООО «Проект»"
+          placeholder="Acme Design Group"
           className="h-11"
           disabled={status === "loading"}
         />
       </label>
       <label className="flex flex-col gap-2 text-sm text-steel">
-        Задача *
+        Project brief *
         <Textarea
           name="request"
           rows={4}
-          placeholder="Нужно вести модель жилого комплекса и выпустить рабочую документацию..."
+          placeholder="We need ongoing BIM for a mid-rise multifamily project and coordinated CDs for permit..."
           className="min-h-28 py-2.5"
           disabled={status === "loading"}
         />
@@ -87,7 +87,7 @@ export function ContactForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button type="submit" size="lg" className="h-11 px-6 text-base" disabled={status === "loading"}>
-          {status === "loading" ? "Отправляем…" : "Отправить заявку"}
+          {status === "loading" ? "Sending…" : "Send message"}
         </Button>
         {status === "success" && (
           <p className="text-sm text-teal-deep" role="status">

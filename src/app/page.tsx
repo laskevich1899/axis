@@ -6,33 +6,33 @@ import { Reveal } from "@/components/reveal";
 const services = [
   {
     number: "01",
-    title: "Ведение моделей проектов",
-    text: "Поддерживаем актуальную BIM-модель на всём жизненном цикле: координация дисциплин, коллизии, версии и единый контур данных.",
+    title: "Project model management",
+    text: "Keep the BIM model current across the full project lifecycle—discipline coordination, clash detection, version control, and one shared data environment.",
   },
   {
     number: "02",
-    title: "Проектная документация",
-    text: "Формируем чертежи и спецификации напрямую из модели — согласованно, проверяемо и готово к экспертизе и стройке.",
+    title: "Construction documents",
+    text: "Produce drawings and schedules straight from the model—consistent, checkable, and ready for review, permitting, and the field.",
   },
   {
     number: "03",
-    title: "Внедрение BIM-процессов",
-    text: "Встраиваем BIM в структуру организации: регламенты, роли, CDE, обучение команд и измеримый рабочий процесс.",
+    title: "BIM process adoption",
+    text: "Embed BIM into how your firm operates: standards, roles, CDE workflows, team training, and a process you can measure.",
   },
 ];
 
 const steps = [
   {
-    title: "Диагностика",
-    text: "Разбираем текущие процессы, модели и точки потерь между проектированием, экспертизой и стройкой.",
+    title: "Assessment",
+    text: "We map current workflows, models, and handoff gaps between design, review, and construction.",
   },
   {
-    title: "Контур данных",
-    text: "Настраиваем структуру модели, уровни детализации и среду общих данных под ваши объекты.",
+    title: "Data framework",
+    text: "We set model structure, LOD expectations, and a common data environment sized to your projects.",
   },
   {
-    title: "Запуск и сопровождение",
-    text: "Ведём модели и документацию, обучаем команду и оставляем работающий BIM-процесс внутри компании.",
+    title: "Launch & support",
+    text: "We run models and documents, upskill your team, and leave a working BIM practice inside the company.",
   },
 ];
 
@@ -42,21 +42,21 @@ export default function Home() {
       <header className="absolute inset-x-0 top-0 z-20">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-8">
           <a href="#top" className="font-heading text-lg tracking-[0.18em] text-ink md:text-xl">
-            КОНТУР
+            KONTUR
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-steel md:flex" aria-label="Основная навигация">
+          <nav className="hidden items-center gap-8 text-sm text-steel md:flex" aria-label="Primary">
             <a href="#services" className="transition-colors hover:text-ink">
-              Услуги
+              Services
             </a>
             <a href="#approach" className="transition-colors hover:text-ink">
-              Подход
+              Approach
             </a>
             <a href="#contact" className="transition-colors hover:text-ink">
-              Контакты
+              Contact
             </a>
           </nav>
           <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-10 px-4">
-            Связаться
+            Get in touch
           </Button>
         </div>
       </header>
@@ -77,22 +77,23 @@ export default function Home() {
             <div className="max-w-xl">
               <Reveal>
                 <p className="font-heading text-4xl leading-none tracking-[0.14em] text-ink sm:text-5xl md:text-6xl lg:text-7xl">
-                  КОНТУР
+                  KONTUR
                 </p>
               </Reveal>
               <Reveal delayMs={120}>
                 <h1 className="mt-6 max-w-lg font-heading text-2xl leading-tight text-ink sm:text-3xl md:text-4xl">
-                  Цифровой контур ваших объектов
+                  The digital contour of your buildings
                 </h1>
               </Reveal>
               <Reveal delayMs={220}>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-steel md:text-lg">
-                  Ведение BIM-моделей, проектная документация и внедрение процессов в структуру организаций.
+                  BIM model management, construction documents, and process rollout for U.S. owners, architects, and
+                  contractors.
                 </p>
               </Reveal>
               <Reveal delayMs={320} className="mt-8 flex flex-wrap gap-3">
                 <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-11 px-6 text-base">
-                  Обсудить проект
+                  Discuss your project
                 </Button>
                 <Button
                   render={<a href="#services" />}
@@ -101,7 +102,7 @@ export default function Home() {
                   size="lg"
                   className="h-11 border-steel/40 bg-white/70 px-6 text-base backdrop-blur-sm"
                 >
-                  Смотреть услуги
+                  View services
                 </Button>
               </Reveal>
             </div>
@@ -110,13 +111,13 @@ export default function Home() {
 
         <section id="services" className="border-t border-border bg-[#f7f9fb]">
           <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-            <p className="font-heading text-sm tracking-[0.2em] text-teal uppercase">Услуги</p>
+            <p className="font-heading text-sm tracking-[0.2em] text-teal uppercase">Services</p>
             <h2 className="mt-3 max-w-2xl font-heading text-3xl text-ink md:text-4xl">
-              Три опоры BIM-практики
+              Three pillars of BIM delivery
             </h2>
             <p className="mt-4 max-w-xl text-steel">
-              Работаем там, где модель должна оставаться живой, документация — согласованной, а процесс — частью
-              компании.
+              Built for teams that need a live model, coordinated documents, and a process that sticks inside the
+              organization.
             </p>
 
             <ul className="mt-14 divide-y divide-border border-y border-border">
@@ -145,11 +146,11 @@ export default function Home() {
             aria-hidden
           />
           <div className="relative mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-            <p className="font-heading text-sm tracking-[0.2em] text-brass uppercase">Подход</p>
-            <h2 className="mt-3 max-w-2xl font-heading text-3xl md:text-4xl">От модели к рабочему процессу</h2>
+            <p className="font-heading text-sm tracking-[0.2em] text-brass uppercase">Approach</p>
+            <h2 className="mt-3 max-w-2xl font-heading text-3xl md:text-4xl">From model to working process</h2>
             <p className="mt-4 max-w-xl text-[#a8b6c4]">
-              Не продаём «внедрение ради внедрения» — выстраиваем контур, в котором модель, люди и документы говорят на
-              одном языке.
+              We don&apos;t sell adoption for its own sake—we build a contour where the model, the people, and the
+              documents speak the same language.
             </p>
 
             <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
@@ -167,20 +168,20 @@ export default function Home() {
         <section id="contact" className="border-t border-border bg-[#f7f9fb]">
           <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1fr_1.1fr] md:gap-16 md:px-8 md:py-28">
             <div>
-              <p className="font-heading text-sm tracking-[0.2em] text-teal uppercase">Контакты</p>
-              <h2 className="mt-3 font-heading text-3xl text-ink md:text-4xl">Расскажите о проекте</h2>
+              <p className="font-heading text-sm tracking-[0.2em] text-teal uppercase">Contact</p>
+              <h2 className="mt-3 font-heading text-3xl text-ink md:text-4xl">Tell us about your project</h2>
               <p className="mt-4 max-w-md leading-relaxed text-steel">
-                Опишите объект, стадию и задачу — вернёмся с предложением по ведению модели, документации или внедрению
-                BIM.
+                Share the building type, phase, and goals—we&apos;ll come back with a plan for model management,
+                documents, or firm-wide BIM rollout.
               </p>
               <div className="mt-8 space-y-2 text-sm text-steel">
                 <p>
-                  <a className="text-ink underline-offset-4 hover:underline" href="mailto:hello@kontur-bim.ru">
-                    hello@kontur-bim.ru
+                  <a className="text-ink underline-offset-4 hover:underline" href="mailto:hello@konturbim.com">
+                    hello@konturbim.com
                   </a>
                 </p>
-                <p>+7 (495) 000-00-00</p>
-                <p>Москва · удалённо по РФ</p>
+                <p>(512) 555-0148</p>
+                <p>Austin, TX · nationwide remote</p>
               </div>
             </div>
             <ContactForm />
@@ -190,8 +191,8 @@ export default function Home() {
 
       <footer className="border-t border-border bg-mist">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-steel md:flex-row md:items-center md:justify-between md:px-8">
-          <p className="font-heading tracking-[0.16em] text-ink">КОНТУР</p>
-          <p>BIM-модели · документация · внедрение процессов</p>
+          <p className="font-heading tracking-[0.16em] text-ink">KONTUR</p>
+          <p>BIM models · construction documents · process adoption</p>
           <p>© {new Date().getFullYear()}</p>
         </div>
       </footer>
