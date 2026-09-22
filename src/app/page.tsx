@@ -134,14 +134,9 @@ export default function Home() {
 
             <Reveal delayMs={120}>
               <figure className="overflow-hidden rounded border border-border bg-panel shadow-sm">
-                <div className="visual-panel aspect-[5/4] md:aspect-[4/3]">
+                <div className="visual-panel aspect-[5/4]">
                   <BimHeroVisual />
                 </div>
-                <figcaption className="grid grid-cols-3 divide-x divide-border border-t border-border bg-panel text-center font-mono text-[0.7rem] font-semibold uppercase tracking-wide text-foreground">
-                  <span className="px-2 py-2.5">Scan → model</span>
-                  <span className="px-2 py-2.5">Live massing</span>
-                  <span className="px-2 py-2.5">Floor plates</span>
-                </figcaption>
               </figure>
             </Reveal>
           </div>
@@ -170,7 +165,7 @@ export default function Home() {
                 <p className="font-mono text-xs tracking-wide text-signal uppercase">Services</p>
                 <h2 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-foreground">Scope of work</h2>
               </div>
-              <p className="max-w-md text-sm text-steel">Three delivery tracks. Engage one or run them as a single package.</p>
+              <p className="max-w-md text-sm text-steel">Four delivery tracks. Engage one or combine into a single package.</p>
             </div>
 
             <ul className="mt-8 divide-y divide-border border-y border-border">

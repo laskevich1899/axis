@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 /**
- * Bold, fluid architectural massing — large curved volume that
- * reads at a glance: point cloud dissolving into a living BIM form.
+ * Exploded isometric BIM workflow diagram — inspired by
+ * multidisciplinary federated-model process illustrations.
  */
 export function BimHeroVisual() {
   const [ready, setReady] = useState(false);
@@ -19,236 +19,370 @@ export function BimHeroVisual() {
     return () => window.clearTimeout(id);
   }, []);
 
-  const show = (delay: number) =>
+  const show = (d: number) =>
     ({
       opacity: ready ? 1 : 0,
-      transform: ready ? "translate3d(0,0,0) scale(1)" : "translate3d(0,18px,0) scale(0.97)",
-      transition: `opacity 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+      transform: ready ? "translateY(0)" : "translateY(12px)",
+      transition: `opacity 0.75s cubic-bezier(0.22,1,0.36,1) ${d}ms, transform 0.75s cubic-bezier(0.22,1,0.36,1) ${d}ms`,
     }) as const;
+
+  const ink = "#1e2a38";
+  const blue = "#2f5f8f";
+  const blueMid = "#4a7eae";
+  const blueSoft = "#7aa3c9";
+  const grey = "#6b7c8d";
+
+  // isometric helpers
+  const iso = (x: number, y: number, z: number) => {
+    const sx = 480 + (x - y) * 0.9;
+    const sy = 380 + (x + y) * 0.5 - z;
+    return [sx, sy] as const;
+  };
+
+  const floorPoly = (z: number, s = 88) => {
+    const [a, b] = iso(-s, -s, z);
+    const [c, d] = iso(s, -s, z);
+    const [e, f] = iso(s, s, z);
+    const [g, h] = iso(-s, s, z);
+    return `${a},${b} ${c},${d} ${e},${f} ${g},${h}`;
+  };
 
   return (
     <svg
-      viewBox="0 0 960 700"
+      viewBox="0 0 980 720"
       className="h-full w-full"
       role="img"
-      aria-label="Large-scale fluid BIM massing emerging from a point cloud scan"
+      aria-label="Exploded BIM workflow: scan to federated model, clash detection, and coordinated documents"
     >
       <defs>
-        <linearGradient id="skyWash" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#9eb6cc" stopOpacity="0.35" />
-          <stop offset="55%" stopColor="#c5d3e0" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#d8e2ec" stopOpacity="0" />
+        <linearGradient id="floorFill" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#d4e2f0" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#8fb0ce" stopOpacity="0.45" />
         </linearGradient>
-        <linearGradient id="bodyMain" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3d6f9e" />
-          <stop offset="45%" stopColor="#2a5682" />
-          <stop offset="100%" stopColor="#1a3d5f" />
+        <linearGradient id="frameFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#5b8ab5" />
+          <stop offset="100%" stopColor="#2a5682" />
         </linearGradient>
-        <linearGradient id="bodySide" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4d82b0" />
-          <stop offset="100%" stopColor="#163550" />
-        </linearGradient>
-        <linearGradient id="bodyFace" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#6a9bc4" stopOpacity="0.95" />
-          <stop offset="100%" stopColor="#2f5f8f" stopOpacity="0.75" />
-        </linearGradient>
-        <linearGradient id="glassBand" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#d7e8f7" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#7eb0d8" stopOpacity="0.15" />
-        </linearGradient>
-        <linearGradient id="ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#e8f2fb" stopOpacity="0.9" />
-          <stop offset="50%" stopColor="#8eb8de" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#2a5682" stopOpacity="0.35" />
-        </linearGradient>
-        <radialGradient id="glow" cx="55%" cy="40%" r="45%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </radialGradient>
-        <filter id="depth" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="18" stdDeviation="22" floodColor="#0f1720" floodOpacity="0.35" />
+        <pattern id="cloudNoise" width="6" height="6" patternUnits="userSpaceOnUse">
+          <circle cx="1.5" cy="1.5" r="1.1" fill={blue} opacity="0.55" />
+          <circle cx="4.5" cy="4" r="0.9" fill={ink} opacity="0.35" />
+        </pattern>
+        <filter id="lift" x="-15%" y="-15%" width="130%" height="130%">
+          <feDropShadow dx="0" dy="8" stdDeviation="10" floodColor="#1b222c" floodOpacity="0.18" />
         </filter>
-        <filter id="softGlow">
-          <feGaussianBlur stdDeviation="6" result="b" />
-          <feMerge>
-            <feMergeNode in="b" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
+        <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={blue} />
+        </marker>
+        <marker id="arrowInk" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={ink} />
+        </marker>
       </defs>
 
-      {/* Atmospheric field */}
-      <rect width="960" height="700" fill="url(#skyWash)" />
-      <ellipse cx="520" cy="300" rx="280" ry="200" fill="url(#glow)" />
+      {/* faint field */}
+      <rect width="980" height="720" fill="#c8d3df" opacity="0.25" />
 
-      {/* Sweeping ground ellipse — scale cue */}
-      <g style={show(40)}>
-        <ellipse cx="500" cy="560" rx="310" ry="48" fill="#1b222c" opacity="0.1" />
-        <ellipse
-          cx="500"
-          cy="555"
-          rx="290"
-          ry="40"
-          fill="none"
-          stroke="#2a5682"
-          strokeWidth="1.5"
-          strokeDasharray="8 10"
-          opacity="0.45"
-        />
-      </g>
-
-      {/* Point cloud plume — Scan becoming form */}
-      <g style={show(80)} filter="url(#softGlow)">
-        {Array.from({ length: 70 }).map((_, i) => {
-          const t = i / 70;
-          const x = 95 + t * 220 + Math.sin(i * 1.7) * 28;
-          const y = 180 + t * 280 + Math.cos(i * 2.1) * 36;
-          const r = 1.2 + (i % 5) * 0.55;
+      {/* —— Exploded floor plates (federated model) —— */}
+      <g style={show(60)} filter="url(#lift)">
+        {[0, 1, 2, 3].map((i) => {
+          const z = 420 - i * 52;
+          const s = 78 - i * 2;
           return (
-            <circle
-              key={i}
-              cx={x}
-              cy={y}
-              r={r}
-              fill={i % 3 === 0 ? "#1b222c" : "#2a5682"}
-              opacity={0.25 + t * 0.55}
-            />
+            <g key={i}>
+              <polygon
+                points={floorPoly(z, s)}
+                fill="url(#floorFill)"
+                stroke={blue}
+                strokeWidth="1.4"
+              />
+              {/* structural grid on plate */}
+              <g stroke={blueSoft} strokeWidth="0.9" opacity="0.75" fill="none">
+                <polyline
+                  points={`${iso(-s * 0.5, -s, z).join(",")} ${iso(-s * 0.5, s, z).join(",")}`}
+                />
+                <polyline
+                  points={`${iso(s * 0.5, -s, z).join(",")} ${iso(s * 0.5, s, z).join(",")}`}
+                />
+                <polyline
+                  points={`${iso(-s, -s * 0.5, z).join(",")} ${iso(s, -s * 0.5, z).join(",")}`}
+                />
+                <polyline
+                  points={`${iso(-s, s * 0.5, z).join(",")} ${iso(s, s * 0.5, z).join(",")}`}
+                />
+              </g>
+              {/* columns stubs */}
+              {(
+                [
+                  [-0.55, -0.55],
+                  [0.55, -0.55],
+                  [-0.55, 0.55],
+                  [0.55, 0.55],
+                ] as const
+              ).map(([ux, uy], ci) => {
+                const [cx, cy] = iso(ux * s, uy * s, z);
+                return (
+                  <g key={ci}>
+                    <line x1={cx} y1={cy} x2={cx} y2={cy + 18} stroke={ink} strokeWidth="2.2" />
+                    <circle cx={cx} cy={cy} r="2.2" fill={ink} />
+                  </g>
+                );
+              })}
+            </g>
           );
         })}
-        {/* flowing scan contour */}
-        <path
-          d="M110 220 C160 260, 180 320, 210 380 C240 440, 280 480, 340 510"
-          fill="none"
-          stroke="#2a5682"
-          strokeWidth="1.4"
-          strokeDasharray="2 6"
-          opacity="0.5"
-        />
       </g>
 
-      {/* Main fluid massing */}
-      <g filter="url(#depth)" style={show(140)}>
-        {/* Core volume — smooth curved tower silhouette (isometric-ish) */}
+      {/* label: Multidisciplinary Federated Model */}
+      <g style={show(120)} fontFamily="var(--font-source), sans-serif">
         <path
-          d="M380 520
-             C320 500, 300 440, 310 360
-             C320 280, 350 200, 400 150
-             C430 120, 480 105, 530 115
-             C590 128, 640 170, 655 240
-             C670 310, 660 400, 630 470
-             C610 510, 560 535, 500 540
-             C450 544, 410 535, 380 520 Z"
-          fill="url(#bodyMain)"
+          d="M480 185 L480 155"
+          stroke={blue}
+          strokeWidth="1.3"
+          markerEnd="url(#arrow)"
         />
-        {/* Lit face — soft highlight curve */}
-        <path
-          d="M400 515
-             C360 490, 345 430, 352 355
-             C360 280, 385 210, 425 165
-             C455 140, 495 128, 535 138
-             C535 138, 520 200, 510 280
-             C500 370, 490 450, 470 505
-             C450 525, 425 525, 400 515 Z"
-          fill="url(#bodyFace)"
-          opacity="0.85"
-        />
-        {/* Shadow flank */}
-        <path
-          d="M535 138
-             C580 150, 625 185, 640 245
-             C655 310, 648 395, 622 460
-             C600 505, 555 528, 500 535
-             C520 480, 535 400, 542 320
-             C548 250, 545 185, 535 138 Z"
-          fill="url(#bodySide)"
-          opacity="0.9"
+        <text
+          x="480"
+          y="142"
+          textAnchor="middle"
+          fill={ink}
+          fontSize="12"
+          fontWeight="700"
+          letterSpacing="0.06em"
+        >
+          MULTIDISCIPLINARY FEDERATED MODEL
+        </text>
+      </g>
+
+      {/* —— Main building mass (lower center) —— */}
+      <g style={show(160)} filter="url(#lift)">
+        {/* base footprint */}
+        <polygon
+          points={`${iso(-95, -70, 120).join(",")} ${iso(95, -70, 120).join(",")} ${iso(95, 70, 120).join(",")} ${iso(-95, 70, 120).join(",")}`}
+          fill="#9aadc0"
+          stroke={ink}
+          strokeWidth="1.2"
+          opacity="0.55"
         />
 
-        {/* Horizontal floor ribbons — smooth arcs through the volume */}
+        {/* vertical frame edges */}
+        {(
+          [
+            [-95, -70],
+            [95, -70],
+            [95, 70],
+            [-95, 70],
+          ] as const
+        ).map(([x, y], i) => {
+          const [bx, by] = iso(x, y, 120);
+          const [tx, ty] = iso(x, y, 280);
+          return <line key={i} x1={bx} y1={by} x2={tx} y2={ty} stroke={ink} strokeWidth="2" />;
+        })}
+
+        {/* floor levels in building */}
+        {[160, 200, 240, 280].map((z) => (
+          <polygon
+            key={z}
+            points={`${iso(-95, -70, z).join(",")} ${iso(95, -70, z).join(",")} ${iso(95, 70, z).join(",")} ${iso(-95, 70, z).join(",")}`}
+            fill="url(#floorFill)"
+            stroke={blue}
+            strokeWidth="1.15"
+            opacity="0.9"
+          />
+        ))}
+
+        {/* facade mullions */}
+        <g stroke={blueSoft} strokeWidth="1" opacity="0.7">
+          {[-50, 0, 50].map((x) => {
+            const [b1x, b1y] = iso(x, -70, 120);
+            const [t1x, t1y] = iso(x, -70, 280);
+            const [b2x, b2y] = iso(x, 70, 120);
+            const [t2x, t2y] = iso(x, 70, 280);
+            return (
+              <g key={x}>
+                <line x1={b1x} y1={b1y} x2={t1x} y2={t1y} />
+                <line x1={b2x} y1={b2y} x2={t2x} y2={t2y} />
+              </g>
+            );
+          })}
+        </g>
+
+        {/* MEP indication inside — ducts as thin runs */}
         <g fill="none" strokeLinecap="round">
-          {[
-            { d: "M340 470 C400 490, 520 495, 610 470", w: 2.2, o: 0.55 },
-            { d: "M335 410 C405 435, 525 438, 620 408", w: 2.4, o: 0.65 },
-            { d: "M338 350 C410 378, 530 380, 625 348", w: 2.6, o: 0.7 },
-            { d: "M350 290 C415 318, 530 320, 630 288", w: 2.8, o: 0.75 },
-            { d: "M365 230 C425 258, 525 262, 625 235", w: 2.5, o: 0.7 },
-            { d: "M395 175 C450 198, 520 200, 590 178", w: 2.2, o: 0.6 },
-          ].map((band, i) => (
-            <g key={i}>
-              <path d={band.d} stroke="#0f1720" strokeWidth={band.w + 1.5} opacity="0.2" />
-              <path d={band.d} stroke="url(#ribbon)" strokeWidth={band.w} opacity={band.o} />
-            </g>
-          ))}
+          <path
+            d={`M${iso(-40, -20, 210).join(",")} L${iso(40, -20, 210).join(",")} L${iso(40, 30, 210).join(",")}`}
+            stroke={blue}
+            strokeWidth="3.5"
+            opacity="0.85"
+          />
+          <path
+            d={`M${iso(-40, 10, 190).join(",")} L${iso(50, 10, 190).join(",")}`}
+            stroke="#b85a3c"
+            strokeWidth="2.2"
+            opacity="0.8"
+          />
         </g>
+      </g>
 
-        {/* Vertical mullion rhythm — curved facade lines */}
-        <g stroke="#d7e8f6" strokeWidth="1.15" fill="none" opacity="0.4">
-          <path d="M370 480 C355 400, 360 300, 385 200" />
-          <path d="M410 505 C400 400, 405 290, 430 175" />
-          <path d="M455 520 C450 400, 455 280, 470 155" />
-          <path d="M505 525 C510 400, 515 280, 520 145" />
-          <path d="M555 515 C565 400, 575 290, 575 160" />
-          <path d="M595 485 C610 390, 620 300, 615 200" />
-        </g>
+      {/* —— Point cloud panel (Scan) —— */}
+      <g style={show(220)} filter="url(#lift)">
+        <rect x="700" y="95" width="150" height="110" rx="4" fill="#dce5ee" stroke={ink} strokeWidth="1.3" />
+        <rect x="708" y="103" width="134" height="78" fill="url(#cloudNoise)" opacity="0.9" />
+        {/* denser cloud dots */}
+        {Array.from({ length: 40 }).map((_, i) => (
+          <circle
+            key={i}
+            cx={720 + (i % 8) * 14 + (i % 3) * 2}
+            cy={115 + Math.floor(i / 8) * 12 + (i % 2) * 3}
+            r={1.3 + (i % 3) * 0.4}
+            fill={i % 2 ? blue : ink}
+            opacity="0.55"
+          />
+        ))}
+        <text
+          x="775"
+          y="225"
+          textAnchor="middle"
+          fill={ink}
+          fontSize="10"
+          fontWeight="700"
+          letterSpacing="0.04em"
+          fontFamily="var(--font-source), sans-serif"
+        >
+          POINT CLOUD &amp; SCAN DATA
+        </text>
+      </g>
 
-        {/* Glass band highlight near crown */}
+      {/* Model verification inset */}
+      <g style={show(280)} filter="url(#lift)">
+        <rect x="720" y="250" width="130" height="95" rx="4" fill="#e8eef4" stroke={ink} strokeWidth="1.3" />
+        {/* mini room perspective */}
+        <path d="M740 320 L740 270 L820 270 L820 320 Z" fill="#c5d6e8" stroke={blue} strokeWidth="1.2" />
+        <path d="M740 270 L780 255 L830 255 L820 270 Z" fill="#a8c0d8" stroke={blue} strokeWidth="1.1" />
+        <path d="M820 270 L830 255 L830 305 L820 320 Z" fill="#8aa9c6" stroke={blue} strokeWidth="1.1" />
+        <rect x="755" y="285" width="28" height="35" fill="#dfeaf4" stroke={ink} strokeWidth="1" />
+        <text
+          x="785"
+          y="362"
+          textAnchor="middle"
+          fill={ink}
+          fontSize="10"
+          fontWeight="700"
+          letterSpacing="0.04em"
+          fontFamily="var(--font-source), sans-serif"
+        >
+          MODEL VERIFICATION
+        </text>
+      </g>
+
+      {/* Arrow: scan → verification → building */}
+      <g style={show(300)}>
         <path
-          d="M390 200 C440 225, 520 228, 585 205
-             L580 185 C520 205, 445 202, 400 180 Z"
-          fill="url(#glassBand)"
+          d="M775 208 L775 245"
+          stroke={blue}
+          strokeWidth="1.5"
+          markerEnd="url(#arrow)"
         />
-
-        {/* Crown contour — elegant peak */}
         <path
-          d="M420 148 C470 125, 530 128, 575 155"
+          d="M720 300 L620 340"
+          stroke={blue}
+          strokeWidth="1.5"
+          markerEnd="url(#arrow)"
           fill="none"
-          stroke="#f0f6fb"
-          strokeWidth="2"
-          strokeLinecap="round"
-          opacity="0.75"
         />
       </g>
 
-      {/* Floating datum rings — scale / orbit */}
-      <g style={show(280)} fill="none" stroke="#1b222c" strokeWidth="1.2" opacity="0.35">
-        <ellipse cx="500" cy="340" rx="255" ry="78" strokeDasharray="2 8" />
-        <ellipse cx="500" cy="340" rx="210" ry="58" opacity="0.7" />
+      {/* —— LOD 500 as-built detail (bottom left) —— */}
+      <g style={show(320)} filter="url(#lift)">
+        <rect x="48" y="470" width="150" height="120" rx="4" fill="#e4ebf2" stroke={ink} strokeWidth="1.3" />
+        {/* equipment / rack sketch */}
+        <rect x="68" y="490" width="45" height="70" fill="#b0c4d6" stroke={ink} strokeWidth="1.1" />
+        {[0, 1, 2, 3, 4].map((i) => (
+          <line key={i} x1="72" y1={500 + i * 12} x2="109" y2={500 + i * 12} stroke={blue} strokeWidth="2" />
+        ))}
+        <rect x="125" y="505" width="50" height="40" rx="2" fill="#9bb3c8" stroke={ink} strokeWidth="1.1" />
+        <circle cx="150" cy="525" r="10" fill="none" stroke={blue} strokeWidth="1.5" />
+        <path d="M145 525 L155 525 M150 520 L150 530" stroke={blue} strokeWidth="1.2" />
+        <text
+          x="123"
+          y="608"
+          textAnchor="middle"
+          fill={ink}
+          fontSize="10"
+          fontWeight="700"
+          letterSpacing="0.04em"
+          fontFamily="var(--font-source), sans-serif"
+        >
+          LOD 500 AS-BUILT DATA
+        </text>
       </g>
 
-      {/* Bold callouts — sparse, high contrast */}
-      <g style={show(360)} fontFamily="var(--font-source), ui-sans-serif, sans-serif">
-        {/* Scan */}
-        <path d="M210 360 L320 400" stroke="#1b222c" strokeWidth="1.6" />
-        <circle cx="320" cy="400" r="4" fill="#2a5682" />
-        <rect x="78" y="330" width="132" height="40" rx="6" fill="#1b222c" />
-        <text x="144" y="349" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
-          SCAN TO BIM
+      {/* Clash detection flow */}
+      <g style={show(360)} fontFamily="var(--font-source), sans-serif">
+        <path
+          d="M200 420 C260 400, 320 380, 380 360"
+          fill="none"
+          stroke={blue}
+          strokeWidth="1.5"
+          markerEnd="url(#arrow)"
+        />
+        <text x="230" y="398" fill={blue} fontSize="10" fontWeight="700" letterSpacing="0.05em">
+          CLASH DETECTION FLOW
         </text>
-        <text x="144" y="365" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
-          Point cloud → model
+        <rect x="55" y="390" width="128" height="36" rx="3" fill="#1e2a38" />
+        <text x="119" y="412" textAnchor="middle" fill="#f4f8fc" fontSize="10" fontWeight="700">
+          CLASH RESULTS
         </text>
+        <path d="M183 408 L210 408" stroke={ink} strokeWidth="1.3" markerEnd="url(#arrowInk)" />
+      </g>
 
-        {/* Federated model */}
-        <path d="M720 250 L610 290" stroke="#1b222c" strokeWidth="1.6" />
-        <circle cx="610" cy="290" r="4" fill="#2a5682" />
-        <rect x="722" y="220" width="150" height="40" rx="6" fill="#1b222c" />
-        <text x="797" y="239" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
-          LIVE MODEL
+      {/* Coordinated documents output */}
+      <g style={show(400)} filter="url(#lift)" fontFamily="var(--font-source), sans-serif">
+        <path
+          d="M580 400 C640 430, 700 460, 760 490"
+          fill="none"
+          stroke={blue}
+          strokeWidth="1.5"
+          markerEnd="url(#arrow)"
+        />
+        <text x="640" y="448" fill={blue} fontSize="10" fontWeight="700" letterSpacing="0.05em">
+          BIM COORDINATION FLOW
         </text>
-        <text x="797" y="255" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
-          Coordinated massing
+        {/* document stack icon */}
+        <g transform="translate(770 500)">
+          <rect x="4" y="8" width="70" height="52" rx="2" fill="#c5d4e4" stroke={ink} strokeWidth="1.1" />
+          <rect x="0" y="4" width="70" height="52" rx="2" fill="#d7e2ee" stroke={ink} strokeWidth="1.1" />
+          <rect x="-4" y="0" width="70" height="52" rx="2" fill="#e8eef4" stroke={ink} strokeWidth="1.2" />
+          <line x1="6" y1="14" x2="50" y2="14" stroke={blue} strokeWidth="1.5" />
+          <line x1="6" y1="24" x2="54" y2="24" stroke={grey} strokeWidth="1.2" />
+          <line x1="6" y1="32" x2="48" y2="32" stroke={grey} strokeWidth="1.2" />
+          <line x1="6" y1="40" x2="52" y2="40" stroke={grey} strokeWidth="1.2" />
+        </g>
+        <text
+          x="800"
+          y="580"
+          textAnchor="middle"
+          fill={ink}
+          fontSize="10"
+          fontWeight="700"
+          letterSpacing="0.04em"
+        >
+          COORDINATED DOCUMENTS
         </text>
+        <text x="800" y="594" textAnchor="middle" fill={grey} fontSize="9" fontWeight="600">
+          OUTPUT
+        </text>
+      </g>
 
-        {/* Levels */}
-        <path d="M700 470 L600 500" stroke="#1b222c" strokeWidth="1.6" />
-        <circle cx="600" cy="500" r="4" fill="#2a5682" />
-        <rect x="702" y="448" width="140" height="40" rx="6" fill="#1b222c" />
-        <text x="772" y="467" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
-          FLOOR PLATES
-        </text>
-        <text x="772" y="483" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
-          Continuous levels
-        </text>
+      {/* Link from as-built to building */}
+      <g style={show(340)}>
+        <path
+          d="M198 500 C260 480, 320 450, 380 400"
+          fill="none"
+          stroke={ink}
+          strokeWidth="1.2"
+          strokeDasharray="4 5"
+          markerEnd="url(#arrowInk)"
+          opacity="0.7"
+        />
       </g>
     </svg>
   );
