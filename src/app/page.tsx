@@ -49,10 +49,9 @@ const sectors = [
 ];
 
 const stack = [
-  { group: "Authoring", tools: "Revit, Archicad, Civil 3D" },
-  { group: "Coordination", tools: "Navisworks, Solibri, BIMcollab" },
-  { group: "CDE", tools: "ACC / BIM 360, ISO 19650-ready setups" },
-  { group: "Visualization", tools: "Enscape, Twinmotion, view sets" },
+  { group: "Authoring", tools: "Revit · AutoCAD · Tekla" },
+  { group: "Coordination", tools: "Navisworks · Solibri" },
+  { group: "CDE", tools: "ACC / BIM 360" },
 ];
 
 export default function Home() {
@@ -132,10 +131,10 @@ export default function Home() {
                 <div className="visual-panel aspect-[5/4]">
                   <BimHeroVisual />
                 </div>
-                <figcaption className="grid grid-cols-3 divide-x divide-border border-t border-border text-center font-mono text-[0.65rem] uppercase tracking-wide text-steel">
-                  <span className="px-2 py-2.5">STR layer</span>
-                  <span className="px-2 py-2.5">MEP layer</span>
-                  <span className="px-2 py-2.5">ARC layer</span>
+                <figcaption className="grid grid-cols-3 divide-x divide-border border-t border-border bg-panel text-center font-mono text-xs font-semibold uppercase tracking-wide text-foreground">
+                  <span className="px-2 py-3">STR</span>
+                  <span className="px-2 py-3">MEP</span>
+                  <span className="px-2 py-3">ARC</span>
                 </figcaption>
               </figure>
             </Reveal>
@@ -214,26 +213,18 @@ export default function Home() {
 
         <section className="border-b border-border bg-background">
           <div className="mx-auto max-w-6xl section-compact">
-            <div className="grid gap-8 md:grid-cols-[1fr_1.2fr] md:items-start">
-              <div>
-                <p className="font-mono text-xs tracking-wide text-signal uppercase">Platform</p>
-                <h2 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-foreground">
-                  Software environment
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-steel">
-                  We adapt to the client stack and lock exchanges, naming, and review gates so tools serve engineering
-                  control—not the other way around.
-                </p>
-              </div>
-              <dl className="grid gap-3 sm:grid-cols-2">
-                {stack.map((row) => (
-                  <div key={row.group} className="border border-border bg-panel px-4 py-3">
-                    <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">{row.group}</dt>
-                    <dd className="mt-1 text-sm text-foreground">{row.tools}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+            <p className="font-mono text-xs tracking-wide text-signal uppercase">Platform</p>
+            <h2 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-foreground">
+              Software environment
+            </h2>
+            <dl className="mt-6 grid gap-3 sm:grid-cols-3">
+              {stack.map((row) => (
+                <div key={row.group} className="border border-border bg-panel px-4 py-3">
+                  <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">{row.group}</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">{row.tools}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 

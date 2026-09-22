@@ -55,45 +55,45 @@
 }
 
 :root {
-  /* Light engineering drafting palette */
-  --background: #f3f5f7;
+  /* Softer mid-tone engineering palette — less eye strain */
+  --background: #d5dce6;
   --foreground: #1b222c;
   --ink: #1b222c;
-  --mist: #e7ebf0;
-  --panel: #ffffff;
-  --signal: #2f5f8f;
-  --signal-deep: #234a70;
-  --steel: #5a6573;
-  --card: #ffffff;
+  --mist: #c8d0da;
+  --panel: #e4e9ef;
+  --signal: #2a5682;
+  --signal-deep: #1f4266;
+  --steel: #4a5563;
+  --card: #e4e9ef;
   --card-foreground: #1b222c;
-  --popover: #ffffff;
+  --popover: #eef2f6;
   --popover-foreground: #1b222c;
   --primary: #1b222c;
-  --primary-foreground: #f3f5f7;
-  --secondary: #dfe5ec;
+  --primary-foreground: #eef2f6;
+  --secondary: #c5ced8;
   --secondary-foreground: #1b222c;
-  --muted: #dfe5ec;
-  --muted-foreground: #5a6573;
-  --accent: #d9e6f2;
-  --accent-foreground: #234a70;
+  --muted: #c5ced8;
+  --muted-foreground: #4a5563;
+  --accent: #c5d6e8;
+  --accent-foreground: #1f4266;
   --destructive: oklch(0.55 0.2 25);
-  --border: #c5ced8;
-  --input: #c5ced8;
-  --ring: #2f5f8f;
-  --chart-1: #2f5f8f;
-  --chart-2: #5a6573;
+  --border: #a8b4c2;
+  --input: #a8b4c2;
+  --ring: #2a5682;
+  --chart-1: #2a5682;
+  --chart-2: #4a5563;
   --chart-3: #1b222c;
-  --chart-4: #234a70;
-  --chart-5: #8a95a3;
+  --chart-4: #1f4266;
+  --chart-5: #6b7788;
   --radius: 0.25rem;
-  --sidebar: #ffffff;
+  --sidebar: #e4e9ef;
   --sidebar-foreground: #1b222c;
-  --sidebar-primary: #2f5f8f;
+  --sidebar-primary: #2a5682;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d9e6f2;
-  --sidebar-accent-foreground: #234a70;
-  --sidebar-border: #c5ced8;
-  --sidebar-ring: #2f5f8f;
+  --sidebar-accent: #c5d6e8;
+  --sidebar-accent-foreground: #1f4266;
+  --sidebar-border: #a8b4c2;
+  --sidebar-ring: #2a5682;
 }
 
 @layer base {
@@ -122,15 +122,14 @@
 
   .hero-atmosphere {
     background:
-      linear-gradient(90deg, color-mix(in srgb, var(--steel) 10%, transparent) 1px, transparent 1px),
-      linear-gradient(0deg, color-mix(in srgb, var(--steel) 10%, transparent) 1px, transparent 1px),
-      linear-gradient(180deg, #f7f9fb 0%, #eef2f6 100%);
+      linear-gradient(90deg, color-mix(in srgb, var(--steel) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--steel) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(180deg, #dce4ec 0%, #c8d0da 100%);
     background-size: 40px 40px, 40px 40px, auto;
   }
 
   .visual-panel {
-    background:
-      linear-gradient(160deg, #ffffff 0%, #e8eef4 100%);
+    background: linear-gradient(165deg, #d8e0e9 0%, #c2ccd8 100%);
   }
 
   .section-compact {
