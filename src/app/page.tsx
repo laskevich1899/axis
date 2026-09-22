@@ -3,34 +3,10 @@ import { AxisLogo } from "@/components/axis-logo";
 import { BimHeroVisual } from "@/components/bim-hero-visual";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
+import { readSiteContent } from "@/lib/site-content";
 import { cn } from "@/lib/utils";
 
-const services = [
-  {
-    code: "SVC-01",
-    title: "Model coordination",
-    text: "Federate disciplines, run clash detection and keep the shared model under version control through design and construction.",
-    points: ["Model federation & issue tracking", "Weekly coordination packages", "CDE structure and access rules"],
-  },
-  {
-    code: "SVC-02",
-    title: "Drawing production",
-    text: "Extract plans, sections, details and schedules from the model so permit and construction sets stay aligned with the geometry.",
-    points: ["Sheet sets & view templates", "IFC / exchange packages", "As-built updates"],
-  },
-  {
-    code: "SVC-03",
-    title: "Scan to BIM",
-    text: "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out and verification.",
-    points: ["Point cloud registration", "As-built model authoring", "Deviation checks vs design"],
-  },
-  {
-    code: "SVC-04",
-    title: "BIM implementation",
-    text: "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
-    points: ["BEP & project standards", "Role / RACI maps", "Pilot project coaching"],
-  },
-];
+export const dynamic = "force-dynamic";
 
 const steps = [
   {
@@ -60,7 +36,9 @@ const stack = [
   { group: "CDE", tools: "ACC / BIM 360" },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const { contact, services } = await readSiteContent();
+
   return (
     <div className="flex min-h-full flex-col">
       <header className="sticky top-0 z-20 border-b border-border bg-panel/90 backdrop-blur-md">
@@ -163,7 +141,10 @@ export default function Home() {
                 <p className="font-mono text-xs tracking-wide text-signal uppercase">Services</p>
                 <h2 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-foreground">Scope of work</h2>
               </div>
-              <p className="max-w-md text-sm text-steel">Four delivery tracks. Engage one or combine into a single package.</p>
+              <p className="max-w-md text-sm text-steel">
+                {services.length} delivery track{services.length === 1 ? "" : "s"}. Engage one or combine into a single
+                package.
+              </p>
             </div>
 
             <ul className="mt-8 divide-y divide-border border-y border-border">
@@ -262,18 +243,18 @@ export default function Home() {
                 <div>
                   <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">Email</dt>
                   <dd>
-                    <a className="text-foreground hover:underline" href="mailto:hello@axisbim.com">
-                      hello@axisbim.com
+                    <a className="text-foreground hover:underline" href={`mailto:${contact.email}`}>
+                      {contact.email}
                     </a>
                   </dd>
                 </div>
                 <div>
                   <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">Phone</dt>
-                  <dd className="text-foreground">+48 22 555 01 48</dd>
+                  <dd className="text-foreground">{contact.phone}</dd>
                 </div>
                 <div>
                   <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">Location</dt>
-                  <dd className="text-foreground">Warsaw, Poland · EU remote</dd>
+                  <dd className="text-foreground">{contact.location}</dd>
                 </div>
               </dl>
             </div>
@@ -286,7 +267,12 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm text-steel md:flex-row md:items-center md:justify-between md:px-8">
           <AxisLogo variant="lockup" />
           <p className="font-mono text-xs">BIM modeling · engineering · 3D visualization</p>
-          <p className="text-xs">© {new Date().getFullYear()} Axis BIM Solutions</p>
+          <div className="flex items-center gap-4 text-xs">
+            <p>© {new Date().getFullYear()} Axis BIM Solutions</p>
+            <a href="/admin" className="font-mono text-steel/70 hover:text-foreground">
+              Admin
+            </a>
+          </div>
         </div>
       </footer>
     </div>

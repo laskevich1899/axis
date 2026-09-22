@@ -1,0 +1,49 @@
+{
+  "contact": {
+    "email": "hello@axisbim.com",
+    "phone": "+48 22 555 01 48",
+    "location": "Warsaw, Poland · EU remote"
+  },
+  "services": [
+    {
+      "code": "SVC-01",
+      "title": "Model coordination",
+      "text": "Federate disciplines, run clash detection and keep the shared model under version control through design and construction.",
+      "points": [
+        "Model federation & issue tracking",
+        "Weekly coordination packages",
+        "CDE structure and access rules"
+      ]
+    },
+    {
+      "code": "SVC-02",
+      "title": "Drawing production",
+      "text": "Extract plans, sections, details and schedules from the model so permit and construction sets stay aligned with the geometry.",
+      "points": [
+        "Sheet sets & view templates",
+        "IFC / exchange packages",
+        "As-built updates"
+      ]
+    },
+    {
+      "code": "SVC-03",
+      "title": "Scan to BIM",
+      "text": "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out and verification.",
+      "points": [
+        "Point cloud registration",
+        "As-built model authoring",
+        "Deviation checks vs design"
+      ]
+    },
+    {
+      "code": "SVC-04",
+      "title": "BIM implementation",
+      "text": "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
+      "points": [
+        "BEP & project standards",
+        "Role / RACI maps",
+        "Pilot project coaching"
+      ]
+    }
+  ]
+}

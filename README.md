@@ -17,6 +17,21 @@ npm run dev
 
 Open [http://127.0.0.1:4321](http://127.0.0.1:4321).
 
+## Admin
+
+Edit contact details and services at [http://127.0.0.1:4321/admin](http://127.0.0.1:4321/admin).
+
+Default password: `axis-admin`
+
+Optional env vars:
+
+| Variable | Purpose |
+|----------|---------|
+| `ADMIN_PASSWORD` | Admin sign-in password (default `axis-admin`) |
+| `ADMIN_SESSION_SECRET` | Cookie signing secret (defaults from the password) |
+
+Saved content lives in `data/site-content.json`.
+
 ## Scripts
 
 | Command | Description |
@@ -28,4 +43,4 @@ Open [http://127.0.0.1:4321](http://127.0.0.1:4321).
 
 ## Notes
 
-Copy is in English. The contact form is mock-only (no backend). Replace placeholder email and phone with production details when ready.
+Copy is in English. The contact form is mock-only (no email backend). Change the admin password before any public deploy.
