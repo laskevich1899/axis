@@ -55,7 +55,7 @@ export default function Home() {
               Контакты
             </a>
           </nav>
-          <Button render={<a href="#contact" />} size="lg" className="h-10 px-4">
+          <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-10 px-4">
             Связаться
           </Button>
         </div>
@@ -91,11 +91,12 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal delayMs={320} className="mt-8 flex flex-wrap gap-3">
-                <Button render={<a href="#contact" />} size="lg" className="h-11 px-6 text-base">
+                <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-11 px-6 text-base">
                   Обсудить проект
                 </Button>
                 <Button
                   render={<a href="#services" />}
+                  nativeButton={false}
                   variant="outline"
                   size="lg"
                   className="h-11 border-steel/40 bg-white/70 px-6 text-base backdrop-blur-sm"
