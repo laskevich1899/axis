@@ -20,6 +20,12 @@ const services = [
   },
   {
     code: "SVC-03",
+    title: "Scan to BIM",
+    text: "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out, and verification.",
+    points: ["Point cloud registration", "As-built model authoring", "Deviation checks vs design"],
+  },
+  {
+    code: "SVC-04",
     title: "BIM implementation",
     text: "Define BEP, LOD matrices, naming, and responsibilities—then coach project teams until the workflow holds without constant oversight.",
     points: ["BEP & project standards", "Role / RACI maps", "Pilot project coaching"],
@@ -120,21 +126,22 @@ export default function Home() {
                 <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-5 font-mono text-xs text-steel">
                   <li>LOD / LOI alignment</li>
                   <li>Clash detection</li>
+                  <li>Scan to BIM</li>
                   <li>IFC exchange</li>
-                  <li>ISO 19650 CDE</li>
                 </ul>
               </Reveal>
             </div>
 
             <Reveal delayMs={120}>
               <figure className="overflow-hidden rounded border border-border bg-panel shadow-sm">
-                <div className="visual-panel aspect-[5/4]">
+                <div className="visual-panel aspect-[4/3]">
                   <BimHeroVisual />
                 </div>
-                <figcaption className="grid grid-cols-3 divide-x divide-border border-t border-border bg-panel text-center font-mono text-xs font-semibold uppercase tracking-wide text-foreground">
-                  <span className="px-2 py-3">STR</span>
-                  <span className="px-2 py-3">MEP</span>
-                  <span className="px-2 py-3">ARC</span>
+                <figcaption className="grid grid-cols-4 divide-x divide-border border-t border-border bg-panel text-center font-mono text-[0.7rem] font-semibold uppercase tracking-wide text-foreground">
+                  <span className="px-1.5 py-2.5">STR</span>
+                  <span className="px-1.5 py-2.5">MEP</span>
+                  <span className="px-1.5 py-2.5">ARC</span>
+                  <span className="px-1.5 py-2.5">Scan</span>
                 </figcaption>
               </figure>
             </Reveal>
@@ -150,8 +157,8 @@ export default function Home() {
                 From federated model to field-ready set
               </h2>
               <p className="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-steel">
-                Axis supports owners, A/E firms, and contractors when geometry, data, and documents must stay consistent.
-                We work inside your authoring stack and CDE—Warsaw-based, available on-site or remote across the EU.
+                Axis supports owners, A/E firms, and contractors when geometry, data, and documents must stay consistent—
+                including Scan to BIM for existing assets. Warsaw-based, available on-site or remote across the EU.
               </p>
             </div>
           </div>
