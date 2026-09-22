@@ -134,7 +134,7 @@ export default function Home() {
 
             <Reveal delayMs={120}>
               <figure className="overflow-hidden rounded border border-border bg-panel shadow-sm">
-                <div className="visual-panel aspect-[5/4]">
+                <div className="relative aspect-[4/3] w-full">
                   <BimHeroVisual />
                 </div>
               </figure>
