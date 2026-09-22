@@ -110,7 +110,7 @@ export function BimHeroVisual() {
           </p>
           <p className="truncate text-sm text-steel">{slide.caption}</p>
         </div>
-        <div className="flex shrink-0 items-center gap-1.5" role="tablist" aria-label="Diagram slides">
+        <div className="relative z-10 flex shrink-0 items-center gap-1" role="tablist" aria-label="Diagram slides">
           {slides.map((item, i) => (
             <button
               key={item.src}
@@ -118,12 +118,16 @@ export function BimHeroVisual() {
               role="tab"
               aria-selected={i === index}
               aria-label={`Show slide ${i + 1}: ${item.title}`}
-              onClick={() => go(i)}
-              className={cn(
-                "h-1.5 w-5 rounded-sm transition-colors",
-                i === index ? "bg-signal" : "bg-border hover:bg-steel/50",
-              )}
-            />
+              onClick={() => setIndex(i)}
+              className="group flex h-8 items-center justify-center px-1"
+            >
+              <span
+                className={cn(
+                  "block h-1.5 w-5 rounded-sm transition-colors",
+                  i === index ? "bg-signal" : "bg-border group-hover:bg-steel/50",
+                )}
+              />
+            </button>
           ))}
         </div>
       </figcaption>
