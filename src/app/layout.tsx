@@ -20,15 +20,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Axis BIM Solutions — BIM Modeling, Engineering & 3D Visualization",
+  title: "Axis BIM Solutions — Model coordination, drawings & BIM implementation",
   description:
-    "Axis BIM Solutions: BIM modeling, engineering, and 3D visualization. Model management, construction documents, and process adoption. Based in Warsaw.",
+    "Engineering-focused BIM practice in Warsaw: multidisciplinary model coordination, construction drawings from the model, and BIM process implementation.",
   keywords: [
     "BIM",
     "Axis BIM Solutions",
-    "3D visualization",
-    "engineering",
-    "model management",
+    "model coordination",
+    "clash detection",
+    "construction drawings",
     "Warsaw",
   ],
 };
