@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
+import { AxisLogo } from "@/components/axis-logo";
 import { BimHeroVisual } from "@/components/bim-hero-visual";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
@@ -34,75 +36,56 @@ const steps = [
   },
 ];
 
-function BrandMark({ className = "" }: { className?: string }) {
-  return (
-    <span className={`inline-flex flex-col leading-none ${className}`}>
-      <span className="font-heading text-[1.35rem] font-semibold tracking-tight text-ink md:text-xl">Axis</span>
-      <span className="mt-1 text-[0.65rem] font-medium tracking-[0.12em] text-steel uppercase">
-        BIM Solutions
-      </span>
-    </span>
-  );
-}
-
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col">
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-transparent">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-8">
-          <a href="#top" className="transition-opacity hover:opacity-80">
-            <BrandMark />
+      <header className="sticky top-0 z-20 border-b border-border/70 bg-background/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8">
+          <a href="#top" className="min-w-0 transition-opacity hover:opacity-80">
+            <AxisLogo variant="lockup" />
           </a>
           <nav className="hidden items-center gap-9 text-[0.95rem] text-steel md:flex" aria-label="Primary">
-            <a href="#services" className="transition-colors hover:text-ink">
+            <a href="#services" className="transition-colors hover:text-foreground">
               Services
             </a>
-            <a href="#approach" className="transition-colors hover:text-ink">
+            <a href="#approach" className="transition-colors hover:text-foreground">
               Approach
             </a>
-            <a href="#contact" className="transition-colors hover:text-ink">
+            <a href="#contact" className="transition-colors hover:text-foreground">
               Contact
             </a>
           </nav>
-          <a href="#contact" className={cn(buttonVariants({ size: "lg" }), "h-10 rounded-md px-4")}>
+          <a
+            href="#contact"
+            className={cn(buttonVariants({ size: "lg" }), "h-10 shrink-0 rounded-md px-4")}
+          >
             Get in touch
           </a>
         </div>
       </header>
 
       <main id="top" className="flex-1">
-        <section className="relative min-h-[100svh] overflow-hidden hero-atmosphere">
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[54%] md:block"
-            aria-hidden
-          >
-            <div className="flex h-full items-center pr-6">
-              <BimHeroVisual />
-            </div>
-          </div>
-
-          <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 pb-16 pt-28 md:px-8 md:pb-24">
+        {/* Hero: two columns — text and visual never overlap */}
+        <section className="hero-atmosphere border-b border-border">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2 md:gap-14 md:px-8 md:py-24 lg:gap-16">
             <div className="max-w-xl">
               <Reveal>
-                <p className="font-heading text-5xl font-semibold tracking-tight text-ink sm:text-6xl md:text-7xl">
-                  Axis
-                </p>
-                <p className="mt-2 text-sm font-medium tracking-[0.16em] text-signal uppercase md:text-base">
-                  BIM Solutions
+                <p className="text-sm font-medium tracking-[0.16em] text-signal uppercase">
+                  Axis BIM Solutions
                 </p>
               </Reveal>
-              <Reveal delayMs={120}>
-                <h1 className="mt-8 max-w-lg font-heading text-3xl font-medium leading-[1.15] tracking-tight text-ink sm:text-4xl">
+              <Reveal delayMs={100}>
+                <h1 className="mt-5 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl">
                   Clarity for every model, drawing, and handoff
                 </h1>
               </Reveal>
-              <Reveal delayMs={220}>
-                <p className="mt-5 max-w-md text-lg leading-relaxed text-steel">
-                  Model management, construction documents, and BIM process adoption for owners, design firms, and
-                  contractors.
+              <Reveal delayMs={200}>
+                <p className="mt-5 text-lg leading-relaxed text-steel">
+                  BIM modeling, engineering, and 3D visualization for owners, design firms, and contractors—plus the
+                  process work that makes delivery stick.
                 </p>
               </Reveal>
-              <Reveal delayMs={320} className="mt-9 flex flex-wrap gap-3">
+              <Reveal delayMs={300} className="mt-9 flex flex-wrap gap-3">
                 <a
                   href="#contact"
                   className={cn(buttonVariants({ size: "lg" }), "h-11 rounded-md px-6 text-base")}
@@ -113,7 +96,7 @@ export default function Home() {
                   href="#services"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "h-11 rounded-md border-border bg-white/80 px-6 text-base",
+                    "h-11 rounded-md border-border bg-transparent px-6 text-base hover:bg-secondary",
                   )}
                 >
                   View services
@@ -121,16 +104,34 @@ export default function Home() {
               </Reveal>
             </div>
 
-            <div className="mt-14 h-48 md:hidden" aria-hidden>
-              <BimHeroVisual />
+            <Reveal delayMs={180} className="w-full">
+              <div className="visual-panel relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border">
+                <BimHeroVisual />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Brand lockup band — logo as its own section, separate from copy */}
+        <section className="border-b border-border bg-mist" aria-label="Brand">
+          <div className="mx-auto flex max-w-6xl justify-center px-6 py-14 md:px-8 md:py-16">
+            <div className="flex max-w-md flex-col items-center gap-6">
+              <Image
+                src="/axis-logo.png"
+                alt="Axis BIM Solutions logo"
+                width={640}
+                height={640}
+                className="h-auto w-full max-w-sm"
+                priority
+              />
             </div>
           </div>
         </section>
 
-        <section id="services" className="border-t border-border section-wash">
+        <section id="services" className="border-b border-border bg-background">
           <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
             <p className="text-sm font-medium tracking-[0.14em] text-signal uppercase">Services</p>
-            <h2 className="mt-3 max-w-2xl font-heading text-3xl font-medium tracking-tight text-ink md:text-4xl">
+            <h2 className="mt-3 max-w-2xl font-heading text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               What we deliver
             </h2>
             <p className="mt-4 max-w-xl text-lg text-steel">
@@ -144,8 +145,10 @@ export default function Home() {
                   key={service.title}
                   className="grid gap-3 border-b border-border py-10 md:grid-cols-[3rem_minmax(0,0.9fr)_1.2fr] md:gap-12 md:py-12"
                 >
-                  <span className="font-heading text-sm text-steel/70">{String(index + 1).padStart(2, "0")}</span>
-                  <h3 className="font-heading text-xl font-medium tracking-tight text-ink md:text-2xl">
+                  <span className="font-heading text-sm text-steel/70">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-heading text-xl font-medium tracking-tight text-foreground md:text-2xl">
                     {service.title}
                   </h3>
                   <p className="text-base leading-relaxed text-steel md:text-[1.05rem]">{service.text}</p>
@@ -155,10 +158,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="approach" className="border-t border-border bg-white">
+        <section id="approach" className="border-b border-border bg-mist">
           <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
             <p className="text-sm font-medium tracking-[0.14em] text-signal uppercase">Approach</p>
-            <h2 className="mt-3 max-w-2xl font-heading text-3xl font-medium tracking-tight text-ink md:text-4xl">
+            <h2 className="mt-3 max-w-2xl font-heading text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               From model to working process
             </h2>
             <p className="mt-4 max-w-xl text-lg text-steel">
@@ -172,7 +175,9 @@ export default function Home() {
                   <span className="text-sm font-medium text-signal">
                     Step {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-3 font-heading text-xl font-medium tracking-tight text-ink">{step.title}</h3>
+                  <h3 className="mt-3 font-heading text-xl font-medium tracking-tight text-foreground">
+                    {step.title}
+                  </h3>
                   <p className="mt-3 leading-relaxed text-steel">{step.text}</p>
                 </li>
               ))}
@@ -180,11 +185,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="border-t border-border bg-mist">
+        <section id="contact" className="bg-background">
           <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[0.9fr_1.1fr] md:gap-20 md:px-8 md:py-28">
             <div>
               <p className="text-sm font-medium tracking-[0.14em] text-signal uppercase">Contact</p>
-              <h2 className="mt-3 font-heading text-3xl font-medium tracking-tight text-ink md:text-4xl">
+              <h2 className="mt-3 font-heading text-3xl font-medium tracking-tight text-foreground md:text-4xl">
                 Tell us about your project
               </h2>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-steel">
@@ -193,7 +198,7 @@ export default function Home() {
               </p>
               <div className="mt-8 space-y-2 text-sm text-steel">
                 <p>
-                  <a className="text-ink underline-offset-4 hover:underline" href="mailto:hello@axisbim.com">
+                  <a className="text-foreground underline-offset-4 hover:underline" href="mailto:hello@axisbim.com">
                     hello@axisbim.com
                   </a>
                 </p>
@@ -206,10 +211,10 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-steel md:flex-row md:items-center md:justify-between md:px-8">
-          <BrandMark />
-          <p>BIM models · construction documents · process adoption</p>
+      <footer className="border-t border-border bg-mist">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 text-sm text-steel md:flex-row md:items-center md:justify-between md:px-8">
+          <AxisLogo variant="lockup" />
+          <p>BIM Modeling, Engineering &amp; 3D Visualization</p>
           <p>© {new Date().getFullYear()} Axis BIM Solutions</p>
         </div>
       </footer>

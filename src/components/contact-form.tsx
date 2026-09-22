@@ -39,7 +39,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-lg border border-border bg-white p-6 md:p-8" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 rounded-xl border border-border bg-panel p-6 md:p-8"
+      noValidate
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm text-steel">
           Name *
@@ -47,7 +51,7 @@ export function ContactForm() {
             name="name"
             autoComplete="name"
             placeholder="Jordan Lee"
-            className="h-11"
+            className="h-11 bg-background"
             disabled={status === "loading"}
           />
         </label>
@@ -58,7 +62,7 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             placeholder="jordan@firm.com"
-            className="h-11"
+            className="h-11 bg-background"
             disabled={status === "loading"}
           />
         </label>
@@ -69,7 +73,7 @@ export function ContactForm() {
           name="company"
           autoComplete="organization"
           placeholder="Acme Design Group"
-          className="h-11"
+          className="h-11 bg-background"
           disabled={status === "loading"}
         />
       </label>
@@ -79,7 +83,7 @@ export function ContactForm() {
           name="request"
           rows={4}
           placeholder="We need ongoing BIM for a mid-rise multifamily project and coordinated CDs for permit..."
-          className="min-h-28 py-2.5"
+          className="min-h-28 bg-background py-2.5"
           disabled={status === "loading"}
         />
       </label>
@@ -90,7 +94,7 @@ export function ContactForm() {
         </Button>
         {status === "success" && (
           <p
-            className="rounded-md border border-signal/20 bg-accent px-3 py-2 text-sm text-signal-deep"
+            className="rounded-md border border-signal/30 bg-accent px-3 py-2 text-sm text-signal-deep"
             role="status"
             aria-live="polite"
           >
