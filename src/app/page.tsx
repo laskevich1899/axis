@@ -27,7 +27,7 @@ const services = [
   {
     code: "SVC-04",
     title: "BIM implementation",
-    text: "Define BEP, LOD matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
+    text: "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
     points: ["BEP & project standards", "Role / RACI maps", "Pilot project coaching"],
   },
 ];
@@ -39,7 +39,7 @@ const steps = [
   },
   {
     title: "Specify",
-    text: "Set LOD, parameters, CDE folders and clash tolerances for the project type.",
+    text: "Set detail levels, parameters, CDE folders and clash tolerances for the project type.",
   },
   {
     title: "Operate",
@@ -124,7 +124,7 @@ export default function Home() {
               </Reveal>
               <Reveal delayMs={280}>
                 <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-5 font-mono text-xs text-steel">
-                  <li>LOD / LOI alignment</li>
+                  <li>Detail-level alignment</li>
                   <li>Clash detection</li>
                   <li>Scan to BIM</li>
                   <li>IFC exchange</li>
