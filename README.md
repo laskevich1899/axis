@@ -1,6 +1,6 @@
-# KONTUR — BIM company website
+# Axis BIM Solutions
 
-Landing site for **KONTUR**, a U.S.-oriented BIM firm: project model management, construction documents, and BIM process adoption.
+Marketing site for **Axis BIM Solutions**—BIM model management, construction documents, and process adoption. Based in Warsaw.
 
 ## Stack
 
@@ -26,6 +26,6 @@ Open [http://127.0.0.1:4321](http://127.0.0.1:4321).
 | `npm run start` | Run production build |
 | `npm run lint` | ESLint |
 
-## Content
+## Notes
 
-The site is in American English. The contact form runs in mock mode (no backend)—submission shows a confirmation. Email and phone in the contact block are placeholders; replace them with your real company details.
+Copy is in English. The contact form is mock-only (no backend). Replace placeholder email and phone with production details when ready.

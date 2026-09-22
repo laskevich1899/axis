@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded, Geist_Mono } from "next/font/google";
+import { Outfit, Source_Sans_3, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const sourceSans = Source_Sans_3({
+  variable: "--font-source",
   subsets: ["latin"],
   display: "swap",
 });
@@ -20,16 +20,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KONTUR — BIM models, construction documents & process adoption",
+  title: "Axis BIM Solutions — Model management, documents & process adoption",
   description:
-    "KONTUR is a U.S. BIM firm for project model management, construction documentation, and embedding BIM processes into your organization.",
+    "Axis BIM Solutions helps owners, architects, and contractors run live project models, produce construction documents, and embed BIM into the organization. Based in Warsaw.",
   keywords: [
     "BIM",
     "VDC",
+    "Axis BIM Solutions",
     "model management",
     "construction documents",
     "BIM adoption",
-    "KONTUR",
+    "Warsaw",
   ],
 };
 
@@ -37,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${unbounded.variable} ${geistMono.variable} h-full`}
+      className={`${outfit.variable} ${sourceSans.variable} ${geistMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

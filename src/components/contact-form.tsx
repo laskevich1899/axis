@@ -29,7 +29,6 @@ export function ContactForm() {
     setStatus("loading");
     setMessage("");
 
-    // Local mock — ready to swap for a real API route later
     await new Promise((resolve) => setTimeout(resolve, 700));
 
     form.reset();
@@ -40,7 +39,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-lg border border-border bg-white p-6 md:p-8" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm text-steel">
           Name *
@@ -86,11 +85,11 @@ export function ContactForm() {
       </label>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <Button type="submit" size="lg" className="h-11 px-6 text-base" disabled={status === "loading"}>
+        <Button type="submit" size="lg" className="h-11 rounded-md px-6 text-base" disabled={status === "loading"}>
           {status === "loading" ? "Sending…" : "Send message"}
         </Button>
         {status === "success" && (
-          <p className="text-sm text-teal-deep" role="status">
+          <p className="text-sm text-signal-deep" role="status">
             {message}
           </p>
         )}
