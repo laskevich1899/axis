@@ -72,6 +72,24 @@ export function BimHeroVisual() {
         <path d="M370 250 L480 295 L590 250 L480 205 Z" fill="none" stroke="#c5ced9" strokeWidth="1.75" />
         <circle cx="480" cy="250" r="4" fill="#5b8def" />
       </g>
+
+      <g style={layer(740)} fill="#9aa3b2" fontSize="13" fontFamily="var(--font-source), sans-serif">
+        <circle cx="210" cy="300" r="3.5" fill="#5b8def" />
+        <circle cx="760" cy="290" r="3.5" fill="#5b8def" />
+        <circle cx="700" cy="180" r="3" fill="#c5ced9" />
+        <path d="M214 304 L320 360" stroke="#5b8def" strokeWidth="1" opacity="0.55" fill="none" />
+        <path d="M756 294 L640 340" stroke="#5b8def" strokeWidth="1" opacity="0.55" fill="none" />
+        <path d="M700 184 L590 240" stroke="#c5ced9" strokeWidth="1" opacity="0.45" fill="none" />
+        <text x="168" y="286">
+          Structure
+        </text>
+        <text x="772" y="278">
+          MEP
+        </text>
+        <text x="708" y="168">
+          Envelope
+        </text>
+      </g>
     </svg>
   );
 }
