@@ -44,7 +44,13 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm text-steel">
           Имя *
-          <Input name="name" autoComplete="name" placeholder="Анна Иванова" disabled={status === "loading"} />
+          <Input
+            name="name"
+            autoComplete="name"
+            placeholder="Анна Иванова"
+            className="h-11"
+            disabled={status === "loading"}
+          />
         </label>
         <label className="flex flex-col gap-2 text-sm text-steel">
           Email *
@@ -53,13 +59,20 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             placeholder="anna@company.ru"
+            className="h-11"
             disabled={status === "loading"}
           />
         </label>
       </div>
       <label className="flex flex-col gap-2 text-sm text-steel">
         Компания
-        <Input name="company" autoComplete="organization" placeholder="ООО «Проект»" disabled={status === "loading"} />
+        <Input
+          name="company"
+          autoComplete="organization"
+          placeholder="ООО «Проект»"
+          className="h-11"
+          disabled={status === "loading"}
+        />
       </label>
       <label className="flex flex-col gap-2 text-sm text-steel">
         Задача *
@@ -67,6 +80,7 @@ export function ContactForm() {
           name="request"
           rows={4}
           placeholder="Нужно вести модель жилого комплекса и выпустить рабочую документацию..."
+          className="min-h-28 py-2.5"
           disabled={status === "loading"}
         />
       </label>

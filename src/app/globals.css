@@ -150,44 +150,13 @@
   }
 }
 
-@keyframes layer-in {
-  from {
-    opacity: 0;
-    transform: translateY(24px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes draw-line {
-  from {
-    stroke-dashoffset: 240;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.animate-rise {
-  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-layer {
-  animation: layer-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-draw {
-  stroke-dasharray: 240;
-  animation: draw-line 1.6s ease-out both;
+.reveal-item {
+  animation: rise-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .blueprint-grid,
-  .animate-rise,
-  .animate-layer,
-  .animate-draw {
+  .reveal-item {
     animation: none !important;
   }
 }
