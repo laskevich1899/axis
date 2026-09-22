@@ -84,17 +84,21 @@ export function ContactForm() {
         />
       </label>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <Button type="submit" size="lg" className="h-11 rounded-md px-6 text-base" disabled={status === "loading"}>
+      <div className="flex flex-col gap-3">
+        <Button type="submit" size="lg" className="h-11 w-fit rounded-md px-6 text-base" disabled={status === "loading"}>
           {status === "loading" ? "Sending…" : "Send message"}
         </Button>
         {status === "success" && (
-          <p className="text-sm text-signal-deep" role="status">
+          <p
+            className="rounded-md border border-signal/20 bg-accent px-3 py-2 text-sm text-signal-deep"
+            role="status"
+            aria-live="polite"
+          >
             {message}
           </p>
         )}
         {status === "error" && (
-          <p className="text-sm text-destructive" role="alert">
+          <p className="text-sm text-destructive" role="alert" aria-live="assertive">
             {message}
           </p>
         )}

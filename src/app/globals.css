@@ -105,6 +105,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  ::selection {
+    background: color-mix(in srgb, var(--signal) 22%, white);
+    color: var(--ink);
+  }
 }
 
 @layer utilities {

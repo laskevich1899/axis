@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { BimHeroVisual } from "@/components/bim-hero-visual";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
+import { cn } from "@/lib/utils";
 
 const services = [
   {
@@ -63,9 +64,9 @@ export default function Home() {
               Contact
             </a>
           </nav>
-          <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-10 rounded-md px-4">
+          <a href="#contact" className={cn(buttonVariants({ size: "lg" }), "h-10 rounded-md px-4")}>
             Get in touch
-          </Button>
+          </a>
         </div>
       </header>
 
@@ -102,18 +103,21 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal delayMs={320} className="mt-9 flex flex-wrap gap-3">
-                <Button render={<a href="#contact" />} nativeButton={false} size="lg" className="h-11 rounded-md px-6 text-base">
+                <a
+                  href="#contact"
+                  className={cn(buttonVariants({ size: "lg" }), "h-11 rounded-md px-6 text-base")}
+                >
                   Discuss your project
-                </Button>
-                <Button
-                  render={<a href="#services" />}
-                  nativeButton={false}
-                  variant="outline"
-                  size="lg"
-                  className="h-11 rounded-md border-border bg-white/80 px-6 text-base"
+                </a>
+                <a
+                  href="#services"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "h-11 rounded-md border-border bg-white/80 px-6 text-base",
+                  )}
                 >
                   View services
-                </Button>
+                </a>
               </Reveal>
             </div>
 
