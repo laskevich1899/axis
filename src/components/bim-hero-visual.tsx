@@ -4,7 +4,7 @@ export function BimHeroVisual() {
   return (
     <Image
       src="/bim-workflow-diagram.png"
-      alt="BIM workflow: multidisciplinary federated model, scan to BIM, clash detection, and coordinated documents"
+      alt="BIM workflow: multidisciplinary federated model, scan to BIM, clash detection and coordinated documents"
       fill
       className="object-cover object-center"
       priority

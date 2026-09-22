@@ -9,25 +9,25 @@ const services = [
   {
     code: "SVC-01",
     title: "Model coordination",
-    text: "Federate disciplines, run clash detection, and keep the shared model under version control through design and construction.",
+    text: "Federate disciplines, run clash detection and keep the shared model under version control through design and construction.",
     points: ["Model federation & issue tracking", "Weekly coordination packages", "CDE structure and access rules"],
   },
   {
     code: "SVC-02",
     title: "Drawing production",
-    text: "Extract plans, sections, details, and schedules from the model so permit and construction sets stay aligned with the geometry.",
+    text: "Extract plans, sections, details and schedules from the model so permit and construction sets stay aligned with the geometry.",
     points: ["Sheet sets & view templates", "IFC / exchange packages", "As-built updates"],
   },
   {
     code: "SVC-03",
     title: "Scan to BIM",
-    text: "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out, and verification.",
+    text: "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out and verification.",
     points: ["Point cloud registration", "As-built model authoring", "Deviation checks vs design"],
   },
   {
     code: "SVC-04",
     title: "BIM implementation",
-    text: "Define BEP, LOD matrices, naming, and responsibilities—then coach project teams until the workflow holds without constant oversight.",
+    text: "Define BEP, LOD matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
     points: ["BEP & project standards", "Role / RACI maps", "Pilot project coaching"],
   },
 ];
@@ -35,23 +35,23 @@ const services = [
 const steps = [
   {
     title: "Survey",
-    text: "Audit models, exchanges, and handoff points between design, review, and site.",
+    text: "Audit models, exchanges and handoff points between design, review and site.",
   },
   {
     title: "Specify",
-    text: "Set LOD, parameters, CDE folders, and clash tolerances for the project type.",
+    text: "Set LOD, parameters, CDE folders and clash tolerances for the project type.",
   },
   {
     title: "Operate",
-    text: "Run coordination, publish documents, train leads, and hand off a working setup.",
+    text: "Run coordination, publish documents, train leads and hand off a working setup.",
   },
 ];
 
 const sectors = [
   { title: "Commercial", text: "Office and mixed-use with dense MEP and fit-out packages." },
-  { title: "Multifamily", text: "Repetitive units, corridor MEP, and fast CD cycles." },
-  { title: "Industrial", text: "Equipment clearances, racks, and phased construction." },
-  { title: "Institutional", text: "Schools, healthcare, and civic review packages." },
+  { title: "Multifamily", text: "Repetitive units, corridor MEP and fast CD cycles." },
+  { title: "Industrial", text: "Equipment clearances, racks and phased construction." },
+  { title: "Institutional", text: "Schools, healthcare and civic review packages." },
 ];
 
 const stack = [
@@ -99,12 +99,12 @@ export default function Home() {
               </Reveal>
               <Reveal delayMs={80}>
                 <h1 className="mt-3 max-w-lg font-heading text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
-                  Engineering-grade BIM for models, drawings, and delivery
+                  Engineering-grade BIM for models, drawings and delivery
                 </h1>
               </Reveal>
               <Reveal delayMs={150}>
                 <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-steel">
-                  We coordinate multidisciplinary models, produce construction documents from the model, and install
+                  We coordinate multidisciplinary models, produce construction documents from the model and install
                   BIM processes that hold under real project pressure.
                 </p>
               </Reveal>
@@ -151,7 +151,7 @@ export default function Home() {
                 From federated model to field-ready set
               </h2>
               <p className="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-steel">
-                Axis supports owners, A/E firms, and contractors when geometry, data, and documents must stay consistent—
+                Axis supports owners, A/E firms and contractors when geometry, data and documents must stay consistent—
                 including Scan to BIM for existing assets. Warsaw-based, available on-site or remote across the EU.
               </p>
             </div>
@@ -257,8 +257,8 @@ export default function Home() {
                 Send a project brief
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-steel">
-                Include typology, stage (SD / DD / CD / CA), authoring tools, and whether you need model work,
-                drawings, or process setup.
+                Include typology, stage (SD / DD / CD / CA), authoring tools and whether you need model work,
+                drawings or process setup.
               </p>
               <dl className="mt-6 space-y-3 text-sm">
                 <div>

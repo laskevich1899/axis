@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Axis BIM Solutions — Model coordination, drawings & BIM implementation",
   description:
-    "Engineering-focused BIM practice in Warsaw: multidisciplinary model coordination, construction drawings from the model, and BIM process implementation.",
+    "Engineering-focused BIM practice in Warsaw: multidisciplinary model coordination, construction drawings from the model and BIM process implementation.",
   keywords: [
     "BIM",
     "Axis BIM Solutions",

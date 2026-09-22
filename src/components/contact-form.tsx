@@ -22,7 +22,7 @@ export function ContactForm() {
 
     if (!name || !email || !request) {
       setStatus("error");
-      setMessage("Name, email, and project brief are required.");
+      setMessage("Name, email and project brief are required.");
       return;
     }
 
@@ -72,7 +72,7 @@ export function ContactForm() {
         <Textarea
           name="request"
           rows={3}
-          placeholder="Typology, stage (SD/DD/CD), tools, and needed scope (model / drawings / BEP)…"
+          placeholder="Typology, stage (SD/DD/CD), tools and needed scope (model / drawings / BEP)…"
           className="min-h-24 bg-panel py-2"
           disabled={status === "loading"}
         />

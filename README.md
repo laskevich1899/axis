@@ -1,6 +1,6 @@
 # Axis BIM Solutions
 
-Marketing site for **Axis BIM Solutions**—BIM model management, construction documents, and process adoption. Based in Warsaw.
+Marketing site for **Axis BIM Solutions**—BIM model management, construction documents and process adoption. Based in Warsaw.
 
 ## Stack
 
