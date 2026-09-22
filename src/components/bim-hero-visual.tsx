@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 /**
- * Refined axonometric composition — elegant linework with
- * design-domain annotations (levels, grids, LOD, section).
+ * Bold, fluid architectural massing — large curved volume that
+ * reads at a glance: point cloud dissolving into a living BIM form.
  */
 export function BimHeroVisual() {
   const [ready, setReady] = useState(false);
@@ -19,276 +19,236 @@ export function BimHeroVisual() {
     return () => window.clearTimeout(id);
   }, []);
 
-  const fade = (delay: number) =>
+  const show = (delay: number) =>
     ({
       opacity: ready ? 1 : 0,
-      transform: ready ? "translateY(0)" : "translateY(10px)",
-      transition: `opacity 0.85s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.85s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+      transform: ready ? "translate3d(0,0,0) scale(1)" : "translate3d(0,18px,0) scale(0.97)",
+      transition: `opacity 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
     }) as const;
 
   return (
     <svg
-      viewBox="0 0 900 620"
+      viewBox="0 0 960 700"
       className="h-full w-full"
       role="img"
-      aria-label="Refined BIM design diagram with levels, grids, LOD and discipline layers"
+      aria-label="Large-scale fluid BIM massing emerging from a point cloud scan"
     >
       <defs>
-        <linearGradient id="veil" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#5b8ab5" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#2a5682" stopOpacity="0.08" />
+        <linearGradient id="skyWash" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#9eb6cc" stopOpacity="0.35" />
+          <stop offset="55%" stopColor="#c5d3e0" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#d8e2ec" stopOpacity="0" />
         </linearGradient>
-        <linearGradient id="plinth" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#d2dbe5" />
-          <stop offset="100%" stopColor="#a7b7c8" />
+        <linearGradient id="bodyMain" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3d6f9e" />
+          <stop offset="45%" stopColor="#2a5682" />
+          <stop offset="100%" stopColor="#1a3d5f" />
         </linearGradient>
-        <linearGradient id="inkSoft" x1="0%" y1="0%" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2c3642" />
-          <stop offset="100%" stopColor="#5a6b7c" />
+        <linearGradient id="bodySide" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#4d82b0" />
+          <stop offset="100%" stopColor="#163550" />
         </linearGradient>
-        <filter id="soft" x="-12%" y="-12%" width="124%" height="124%">
-          <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#1b222c" floodOpacity="0.14" />
+        <linearGradient id="bodyFace" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#6a9bc4" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#2f5f8f" stopOpacity="0.75" />
+        </linearGradient>
+        <linearGradient id="glassBand" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#d7e8f7" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#7eb0d8" stopOpacity="0.15" />
+        </linearGradient>
+        <linearGradient id="ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#e8f2fb" stopOpacity="0.9" />
+          <stop offset="50%" stopColor="#8eb8de" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#2a5682" stopOpacity="0.35" />
+        </linearGradient>
+        <radialGradient id="glow" cx="55%" cy="40%" r="45%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+        <filter id="depth" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="18" stdDeviation="22" floodColor="#0f1720" floodOpacity="0.35" />
+        </filter>
+        <filter id="softGlow">
+          <feGaussianBlur stdDeviation="6" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
         </filter>
       </defs>
 
-      {/* Quiet drafting field */}
-      <g opacity="0.22" stroke="#6b7c8d" strokeWidth="0.8">
-        {Array.from({ length: 9 }).map((_, i) => (
-          <path key={`v${i}`} d={`M${160 + i * 70} 80 L${160 + i * 70} 540`} />
-        ))}
-        {Array.from({ length: 7 }).map((_, i) => (
-          <path key={`h${i}`} d={`M120 ${120 + i * 60} L780 ${120 + i * 60}`} />
-        ))}
+      {/* Atmospheric field */}
+      <rect width="960" height="700" fill="url(#skyWash)" />
+      <ellipse cx="520" cy="300" rx="280" ry="200" fill="url(#glow)" />
+
+      {/* Sweeping ground ellipse — scale cue */}
+      <g style={show(40)}>
+        <ellipse cx="500" cy="560" rx="310" ry="48" fill="#1b222c" opacity="0.1" />
+        <ellipse
+          cx="500"
+          cy="555"
+          rx="290"
+          ry="40"
+          fill="none"
+          stroke="#2a5682"
+          strokeWidth="1.5"
+          strokeDasharray="8 10"
+          opacity="0.45"
+        />
       </g>
 
-      {/* Grid bubbles A–D / 1–4 */}
-      <g style={fade(60)} fontFamily="var(--font-source), sans-serif" fontSize="11" fill="#3d4a5a">
-        {["A", "B", "C", "D"].map((label, i) => (
-          <g key={label}>
-            <circle cx={250 + i * 72} cy={548} r="11" fill="#e8eef4" stroke="#7a8b9c" strokeWidth="1" />
-            <text x={250 + i * 72} y={552} textAnchor="middle" fontWeight="600">
-              {label}
-            </text>
-          </g>
-        ))}
-        {["1", "2", "3", "4"].map((label, i) => (
-          <g key={label}>
-            <circle cx={118} cy={420 - i * 58} r="11" fill="#e8eef4" stroke="#7a8b9c" strokeWidth="1" />
-            <text x={118} y={424 - i * 58} textAnchor="middle" fontWeight="600">
-              {label}
-            </text>
-          </g>
-        ))}
+      {/* Point cloud plume — Scan becoming form */}
+      <g style={show(80)} filter="url(#softGlow)">
+        {Array.from({ length: 70 }).map((_, i) => {
+          const t = i / 70;
+          const x = 95 + t * 220 + Math.sin(i * 1.7) * 28;
+          const y = 180 + t * 280 + Math.cos(i * 2.1) * 36;
+          const r = 1.2 + (i % 5) * 0.55;
+          return (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r={r}
+              fill={i % 3 === 0 ? "#1b222c" : "#2a5682"}
+              opacity={0.25 + t * 0.55}
+            />
+          );
+        })}
+        {/* flowing scan contour */}
+        <path
+          d="M110 220 C160 260, 180 320, 210 380 C240 440, 280 480, 340 510"
+          fill="none"
+          stroke="#2a5682"
+          strokeWidth="1.4"
+          strokeDasharray="2 6"
+          opacity="0.5"
+        />
       </g>
 
-      <g filter="url(#soft)">
-        {/* Ground diamond + section cut */}
-        <g style={fade(100)}>
-          <path
-            d="M260 430 L450 525 L640 430 L450 335 Z"
-            fill="none"
-            stroke="#5a6b7c"
-            strokeWidth="1.2"
-            strokeDasharray="4 6"
-          />
-          {/* section cut line */}
-          <path d="M300 410 L600 410" stroke="#1b222c" strokeWidth="1.4" />
-          <path d="M300 410 L292 402 M300 410 L292 418" stroke="#1b222c" strokeWidth="1.2" fill="none" />
-          <path d="M600 410 L608 402 M600 410 L608 418" stroke="#1b222c" strokeWidth="1.2" fill="none" />
-          <text
-            x="450"
-            y="404"
-            textAnchor="middle"
-            fill="#1b222c"
-            fontSize="10"
-            fontFamily="var(--font-source), sans-serif"
-            fontWeight="600"
-            letterSpacing="0.08em"
-          >
-            SECTION A–A
-          </text>
-        </g>
+      {/* Main fluid massing */}
+      <g filter="url(#depth)" style={show(140)}>
+        {/* Core volume — smooth curved tower silhouette (isometric-ish) */}
+        <path
+          d="M380 520
+             C320 500, 300 440, 310 360
+             C320 280, 350 200, 400 150
+             C430 120, 480 105, 530 115
+             C590 128, 640 170, 655 240
+             C670 310, 660 400, 630 470
+             C610 510, 560 535, 500 540
+             C450 544, 410 535, 380 520 Z"
+          fill="url(#bodyMain)"
+        />
+        {/* Lit face — soft highlight curve */}
+        <path
+          d="M400 515
+             C360 490, 345 430, 352 355
+             C360 280, 385 210, 425 165
+             C455 140, 495 128, 535 138
+             C535 138, 520 200, 510 280
+             C500 370, 490 450, 470 505
+             C450 525, 425 525, 400 515 Z"
+          fill="url(#bodyFace)"
+          opacity="0.85"
+        />
+        {/* Shadow flank */}
+        <path
+          d="M535 138
+             C580 150, 625 185, 640 245
+             C655 310, 648 395, 622 460
+             C600 505, 555 528, 500 535
+             C520 480, 535 400, 542 320
+             C548 250, 545 185, 535 138 Z"
+          fill="url(#bodySide)"
+          opacity="0.9"
+        />
 
-        {/* L00 plinth — delicate thickness */}
-        <g style={fade(160)}>
-          <path d="M300 400 L450 475 L600 400 L450 325 Z" fill="url(#plinth)" />
-          <path d="M300 400 L300 414 L450 489 L450 475 Z" fill="#8fa3b6" />
-          <path d="M600 400 L600 414 L450 489 L450 475 Z" fill="#73899e" />
-          {/* fine floor hatch */}
-          <g stroke="#eef3f7" strokeWidth="0.9" opacity="0.65">
-            <path d="M340 380 L420 420" />
-            <path d="M380 360 L480 410" />
-            <path d="M440 350 L540 400" />
-            <path d="M360 420 L460 470" />
-            <path d="M420 430 L520 480" />
-          </g>
-        </g>
-
-        {/* Slender columns */}
-        <g style={fade(220)}>
-          {(
-            [
-              [380, 370],
-              [450, 405],
-              [520, 370],
-              [400, 350],
-              [500, 350],
-              [400, 395],
-              [500, 395],
-            ] as const
-          ).map(([x, y], i) => (
-            <g key={i} opacity="0.92">
-              <path d={`M${x - 4} ${y} L${x} ${y + 2.5} L${x} ${y + 62} L${x - 4} ${y + 59.5} Z`} fill="#6d8296" />
-              <path d={`M${x + 4} ${y} L${x} ${y + 2.5} L${x} ${y + 62} L${x + 4} ${y + 59.5} Z`} fill="#4f6478" />
-              <path d={`M${x - 4} ${y} L${x} ${y - 2.5} L${x + 4} ${y} L${x} ${y + 2.5} Z`} fill="#d8e2ec" />
+        {/* Horizontal floor ribbons — smooth arcs through the volume */}
+        <g fill="none" strokeLinecap="round">
+          {[
+            { d: "M340 470 C400 490, 520 495, 610 470", w: 2.2, o: 0.55 },
+            { d: "M335 410 C405 435, 525 438, 620 408", w: 2.4, o: 0.65 },
+            { d: "M338 350 C410 378, 530 380, 625 348", w: 2.6, o: 0.7 },
+            { d: "M350 290 C415 318, 530 320, 630 288", w: 2.8, o: 0.75 },
+            { d: "M365 230 C425 258, 525 262, 625 235", w: 2.5, o: 0.7 },
+            { d: "M395 175 C450 198, 520 200, 590 178", w: 2.2, o: 0.6 },
+          ].map((band, i) => (
+            <g key={i}>
+              <path d={band.d} stroke="#0f1720" strokeWidth={band.w + 1.5} opacity="0.2" />
+              <path d={band.d} stroke="url(#ribbon)" strokeWidth={band.w} opacity={band.o} />
             </g>
           ))}
         </g>
 
-        {/* L01 plate — translucent veil with room traces */}
-        <g style={fade(300)}>
-          <path d="M320 330 L450 395 L580 330 L450 265 Z" fill="url(#veil)" stroke="#2a5682" strokeWidth="1.3" />
-          <path d="M320 330 L320 342 L450 407 L450 395 Z" fill="#2a5682" opacity="0.22" />
-          <path d="M580 330 L580 342 L450 407 L450 395 Z" fill="#1f4266" opacity="0.28" />
-          {/* room partitions — elegant hairlines */}
-          <g stroke="#eef5fb" strokeWidth="1.1" opacity="0.7">
-            <path d="M370 310 L450 350 L530 310" />
-            <path d="M390 345 L450 375 L510 345" />
-            <path d="M400 290 L400 350" />
-            <path d="M500 290 L500 350" />
-            <path d="M450 275 L450 395" />
-          </g>
-          {/* room tag */}
-          <g fontFamily="var(--font-source), sans-serif">
-            <rect x="428" y="328" width="44" height="16" rx="2" fill="#1b222c" opacity="0.82" />
-            <text x="450" y="339" textAnchor="middle" fill="#f4f8fc" fontSize="9" fontWeight="600">
-              R.01
-            </text>
-          </g>
+        {/* Vertical mullion rhythm — curved facade lines */}
+        <g stroke="#d7e8f6" strokeWidth="1.15" fill="none" opacity="0.4">
+          <path d="M370 480 C355 400, 360 300, 385 200" />
+          <path d="M410 505 C400 400, 405 290, 430 175" />
+          <path d="M455 520 C450 400, 455 280, 470 155" />
+          <path d="M505 525 C510 400, 515 280, 520 145" />
+          <path d="M555 515 C565 400, 575 290, 575 160" />
+          <path d="M595 485 C610 390, 620 300, 615 200" />
         </g>
 
-        {/* Delicate MEP — thin runs, not heavy ducts */}
-        <g style={fade(360)} fill="none" strokeLinecap="round">
-          <path d="M360 312 C400 292, 500 292, 540 312" stroke="#1f4266" strokeWidth="2.2" />
-          <path d="M360 312 C400 292, 500 292, 540 312" stroke="#8eb6de" strokeWidth="1.1" />
-          <path d="M400 300 L400 268" stroke="#2a5682" strokeWidth="1.6" />
-          <path d="M450 308 L450 255" stroke="#2a5682" strokeWidth="1.6" />
-          <path d="M500 300 L500 268" stroke="#2a5682" strokeWidth="1.6" />
-          <path d="M400 268 L500 268" stroke="#b85a3c" strokeWidth="1.4" opacity="0.85" />
-          <circle cx="400" cy="268" r="2.4" fill="#b85a3c" stroke="none" />
-          <circle cx="500" cy="268" r="2.4" fill="#b85a3c" stroke="none" />
-          <circle cx="450" cy="255" r="3" fill="#1f4266" stroke="#eef5fb" strokeWidth="0.8" />
-        </g>
+        {/* Glass band highlight near crown */}
+        <path
+          d="M390 200 C440 225, 520 228, 585 205
+             L580 185 C520 205, 445 202, 400 180 Z"
+          fill="url(#glassBand)"
+        />
 
-        {/* L02 roof contour + envelope */}
-        <g style={fade(420)}>
-          <path
-            d="M345 250 L450 302 L555 250 L450 198 Z"
-            fill="url(#veil)"
-            stroke="#1f4266"
-            strokeWidth="1.25"
-            opacity="0.95"
-          />
-          <path d="M345 250 L345 262 L450 314 L450 302 Z" fill="#2a5682" opacity="0.18" />
-          <path d="M555 250 L555 262 L450 314 L450 302 Z" fill="#1a3858" opacity="0.22" />
-          {/* facade rhythm */}
-          <g stroke="#dce8f4" strokeWidth="1" opacity="0.75">
-            <path d="M370 240 L370 268" />
-            <path d="M395 252 L395 280" />
-            <path d="M420 264 L420 292" />
-            <path d="M480 264 L480 292" />
-            <path d="M505 252 L505 280" />
-            <path d="M530 240 L530 268" />
-          </g>
-          <path
-            d="M365 215 L450 257 L535 215 L450 173 Z"
-            fill="none"
-            stroke="url(#inkSoft)"
-            strokeWidth="1.7"
-          />
-          <circle cx="450" cy="215" r="3.2" fill="#2a5682" stroke="#f4f8fc" strokeWidth="0.9" />
-        </g>
+        {/* Crown contour — elegant peak */}
+        <path
+          d="M420 148 C470 125, 530 128, 575 155"
+          fill="none"
+          stroke="#f0f6fb"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.75"
+        />
       </g>
 
-      {/* Level markers — vertical datum */}
-      <g style={fade(480)} fontFamily="var(--font-source), sans-serif">
-        <path d="M670 470 L670 200" stroke="#1b222c" strokeWidth="1.1" />
-        {[
-          { y: 414, label: "L00" },
-          { y: 342, label: "L01" },
-          { y: 262, label: "L02" },
-          { y: 215, label: "RF" },
-        ].map((lv) => (
-          <g key={lv.label}>
-            <path d={`M664 ${lv.y} L676 ${lv.y}`} stroke="#1b222c" strokeWidth="1.3" />
-            <text x="686" y={lv.y + 4} fill="#1b222c" fontSize="11" fontWeight="700" letterSpacing="0.04em">
-              {lv.label}
-            </text>
-          </g>
-        ))}
+      {/* Floating datum rings — scale / orbit */}
+      <g style={show(280)} fill="none" stroke="#1b222c" strokeWidth="1.2" opacity="0.35">
+        <ellipse cx="500" cy="340" rx="255" ry="78" strokeDasharray="2 8" />
+        <ellipse cx="500" cy="340" rx="210" ry="58" opacity="0.7" />
       </g>
 
-      {/* LOD chip + north + scan dust */}
-      <g style={fade(540)} fontFamily="var(--font-source), sans-serif">
-        <rect x="720" y="120" width="96" height="28" rx="3" fill="#1b222c" />
-        <text x="768" y="138" textAnchor="middle" fill="#f4f8fc" fontSize="11" fontWeight="700" letterSpacing="0.06em">
-          LOD 300
+      {/* Bold callouts — sparse, high contrast */}
+      <g style={show(360)} fontFamily="var(--font-source), ui-sans-serif, sans-serif">
+        {/* Scan */}
+        <path d="M210 360 L320 400" stroke="#1b222c" strokeWidth="1.6" />
+        <circle cx="320" cy="400" r="4" fill="#2a5682" />
+        <rect x="78" y="330" width="132" height="40" rx="6" fill="#1b222c" />
+        <text x="144" y="349" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
+          SCAN TO BIM
+        </text>
+        <text x="144" y="365" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
+          Point cloud → model
         </text>
 
-        <g transform="translate(150 130)">
-          <circle cx="0" cy="0" r="16" fill="none" stroke="#1b222c" strokeWidth="1.2" />
-          <path d="M0 10 L0 -11" stroke="#1b222c" strokeWidth="1.2" />
-          <path d="M-4 -5 L0 -11 L4 -5" fill="none" stroke="#1b222c" strokeWidth="1.2" />
-          <text x="0" y="28" textAnchor="middle" fill="#1b222c" fontSize="10" fontWeight="700">
-            N
-          </text>
-        </g>
-
-        {/* Scan constellation — refined, not noisy */}
-        {[
-          [195, 380],
-          [210, 400],
-          [188, 415],
-          [225, 390],
-          [205, 430],
-          [700, 390],
-          [720, 410],
-          [690, 425],
-          [735, 400],
-        ].map(([x, y], i) => (
-          <circle key={`${x}${y}`} cx={x} cy={y} r={i % 2 ? 1.6 : 2.1} fill="#2a5682" opacity="0.55" />
-        ))}
-        <text x="175" y="455" fill="#2a5682" fontSize="10" fontWeight="700" letterSpacing="0.08em">
-          SCAN
+        {/* Federated model */}
+        <path d="M720 250 L610 290" stroke="#1b222c" strokeWidth="1.6" />
+        <circle cx="610" cy="290" r="4" fill="#2a5682" />
+        <rect x="722" y="220" width="150" height="40" rx="6" fill="#1b222c" />
+        <text x="797" y="239" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
+          LIVE MODEL
         </text>
-      </g>
+        <text x="797" y="255" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
+          Coordinated massing
+        </text>
 
-      {/* Discipline legend — elegant inline */}
-      <g style={fade(600)} fontFamily="var(--font-source), sans-serif" fontSize="10" fontWeight="600">
-        <g transform="translate(200 560)">
-          <rect width="10" height="10" rx="1" fill="#8fa3b6" />
-          <text x="16" y="9" fill="#1b222c">
-            Structure
-          </text>
-        </g>
-        <g transform="translate(310 560)">
-          <rect width="10" height="10" rx="1" fill="#4d82b5" opacity="0.7" />
-          <text x="16" y="9" fill="#1b222c">
-            Architecture
-          </text>
-        </g>
-        <g transform="translate(440 560)">
-          <rect width="10" height="3" y="3.5" rx="1" fill="#1f4266" />
-          <text x="16" y="9" fill="#1b222c">
-            MEP
-          </text>
-        </g>
-        <g transform="translate(530 560)">
-          <circle cx="5" cy="5" r="3" fill="#2a5682" />
-          <text x="16" y="9" fill="#1b222c">
-            Point cloud
-          </text>
-        </g>
+        {/* Levels */}
+        <path d="M700 470 L600 500" stroke="#1b222c" strokeWidth="1.6" />
+        <circle cx="600" cy="500" r="4" fill="#2a5682" />
+        <rect x="702" y="448" width="140" height="40" rx="6" fill="#1b222c" />
+        <text x="772" y="467" textAnchor="middle" fill="#9ec0e0" fontSize="10" fontWeight="600" letterSpacing="0.12em">
+          FLOOR PLATES
+        </text>
+        <text x="772" y="483" textAnchor="middle" fill="#f4f8fc" fontSize="13" fontWeight="700">
+          Continuous levels
+        </text>
       </g>
     </svg>
   );

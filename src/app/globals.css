@@ -129,7 +129,9 @@
   }
 
   .visual-panel {
-    background: linear-gradient(165deg, #d8e0e9 0%, #c2ccd8 100%);
+    background:
+      radial-gradient(ellipse 70% 55% at 55% 40%, color-mix(in srgb, #2a5682 16%, transparent), transparent 60%),
+      linear-gradient(165deg, #c5d0dc 0%, #aebbc9 100%);
   }
 
   .section-compact {

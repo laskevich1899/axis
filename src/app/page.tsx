@@ -134,14 +134,13 @@ export default function Home() {
 
             <Reveal delayMs={120}>
               <figure className="overflow-hidden rounded border border-border bg-panel shadow-sm">
-                <div className="visual-panel aspect-[4/3]">
+                <div className="visual-panel aspect-[5/4] md:aspect-[4/3]">
                   <BimHeroVisual />
                 </div>
-                <figcaption className="grid grid-cols-4 divide-x divide-border border-t border-border bg-panel px-1 text-center font-mono text-[0.65rem] font-semibold uppercase tracking-wide text-foreground sm:text-[0.7rem]">
-                  <span className="px-1 py-2.5">Levels</span>
-                  <span className="px-1 py-2.5">Grids</span>
-                  <span className="px-1 py-2.5">LOD 300</span>
-                  <span className="px-1 py-2.5">Scan</span>
+                <figcaption className="grid grid-cols-3 divide-x divide-border border-t border-border bg-panel text-center font-mono text-[0.7rem] font-semibold uppercase tracking-wide text-foreground">
+                  <span className="px-2 py-2.5">Scan → model</span>
+                  <span className="px-2 py-2.5">Live massing</span>
+                  <span className="px-2 py-2.5">Floor plates</span>
                 </figcaption>
               </figure>
             </Reveal>
