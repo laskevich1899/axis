@@ -9,6 +9,14 @@ export type ServiceItem = {
   points: string[];
 };
 
+export type SlideItem = {
+  id: string;
+  src: string;
+  title: string;
+  caption: string;
+  alt: string;
+};
+
 export type SiteContent = {
   contact: {
     email: string;
@@ -16,11 +24,44 @@ export type SiteContent = {
     location: string;
   };
   services: ServiceItem[];
+  slides: SlideItem[];
 };
 
 export const SESSION_COOKIE = "axis_admin_session";
 
+export const DEFAULT_SLIDES: SlideItem[] = [
+  {
+    id: "federated-model",
+    src: "/slides/01-federated-model.png",
+    title: "Federated model",
+    caption: "Multidisciplinary coordination in one shared model",
+    alt: "Multidisciplinary federated BIM model with coordination flows",
+  },
+  {
+    id: "scan-to-bim",
+    src: "/slides/02-scan-to-bim.png",
+    title: "Scan to BIM",
+    caption: "Point clouds registered into as-built geometry",
+    alt: "Scan to BIM workflow from point cloud capture to as-built model",
+  },
+  {
+    id: "clash-detection",
+    src: "/slides/03-clash-detection.png",
+    title: "Clash detection",
+    caption: "Discipline overlays reviewed before documents freeze",
+    alt: "Clash detection with discipline overlay and issue markup",
+  },
+  {
+    id: "coordinated-docs",
+    src: "/slides/04-coordinated-docs.png",
+    title: "Documents",
+    caption: "Sheets, sections and IFC packages from the model",
+    alt: "Coordinated documents output from the federated model",
+  },
+];
+
 const CONTENT_PATH = path.join(process.cwd(), "data", "site-content.json");
+export const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads", "slides");
 
 export function getAdminPassword() {
   return process.env.ADMIN_PASSWORD?.trim() || "axis-admin";
@@ -53,7 +94,12 @@ export function passwordsMatch(input: string) {
 
 export async function readSiteContent(): Promise<SiteContent> {
   const raw = await fs.readFile(CONTENT_PATH, "utf8");
-  return JSON.parse(raw) as SiteContent;
+  const parsed = JSON.parse(raw) as Partial<SiteContent>;
+  return normalizeContent({
+    contact: parsed.contact ?? { email: "", phone: "", location: "" },
+    services: parsed.services ?? [],
+    slides: parsed.slides?.length ? parsed.slides : DEFAULT_SLIDES,
+  });
 }
 
 export async function writeSiteContent(content: SiteContent) {
@@ -63,6 +109,7 @@ export async function writeSiteContent(content: SiteContent) {
 }
 
 export function normalizeContent(input: SiteContent): SiteContent {
+  const slidesSource = input.slides?.length ? input.slides : DEFAULT_SLIDES;
   return {
     contact: {
       email: String(input.contact?.email ?? "").trim(),
@@ -77,11 +124,21 @@ export function normalizeContent(input: SiteContent): SiteContent {
         .map((point) => String(point).trim())
         .filter(Boolean),
     })),
+    slides: slidesSource.map((slide, index) => {
+      const fallback = DEFAULT_SLIDES[index] ?? DEFAULT_SLIDES[0];
+      return {
+        id: String(slide.id ?? fallback.id).trim() || fallback.id,
+        src: String(slide.src ?? fallback.src).trim() || fallback.src,
+        title: String(slide.title ?? "").trim(),
+        caption: String(slide.caption ?? "").trim(),
+        alt: String(slide.alt ?? slide.title ?? "").trim(),
+      };
+    }),
   };
 }
 
 export function validateContent(content: SiteContent): string | null {
-  const { contact, services } = content;
+  const { contact, services, slides } = content;
   if (!contact.email || !contact.phone || !contact.location) {
     return "Email, phone and location are required.";
   }
@@ -99,5 +156,28 @@ export function validateContent(content: SiteContent): string | null {
       return `Add at least one bullet for ${service.title || service.code}.`;
     }
   }
+  if (!slides.length) {
+    return "Add at least one hero slide.";
+  }
+  for (const slide of slides) {
+    if (!slide.src || !slide.title || !slide.caption) {
+      return "Each slide needs an image, title and caption.";
+    }
+  }
   return null;
+}
+
+export function extensionForMime(mime: string) {
+  switch (mime) {
+    case "image/png":
+      return "png";
+    case "image/jpeg":
+      return "jpg";
+    case "image/webp":
+      return "webp";
+    case "image/gif":
+      return "gif";
+    default:
+      return null;
+  }
 }

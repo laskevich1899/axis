@@ -30,7 +30,7 @@ Optional env vars:
 | `ADMIN_PASSWORD` | Admin sign-in password (default `axis-admin`) |
 | `ADMIN_SESSION_SECRET` | Cookie signing secret (defaults from the password) |
 
-Saved content lives in `data/site-content.json`.
+Saved content lives in `data/site-content.json`. Hero slide images can be replaced in Admin; uploads go to `public/uploads/slides/`.
 
 ## Scripts
 

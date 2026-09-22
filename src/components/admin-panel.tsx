@@ -7,9 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AxisLogo } from "@/components/axis-logo";
 import { cn } from "@/lib/utils";
-import type { ServiceItem, SiteContent } from "@/lib/site-content";
+import type { ServiceItem, SiteContent, SlideItem } from "@/lib/site-content";
 
 type Status = "loading" | "login" | "ready" | "saving" | "error";
+type UploadState = Record<string, "idle" | "uploading" | "error">;
 
 const emptyService = (): ServiceItem => ({
   code: "",
@@ -23,6 +24,8 @@ export function AdminPanel() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [content, setContent] = useState<SiteContent | null>(null);
+  const [uploads, setUploads] = useState<UploadState>({});
+  const [previewBust, setPreviewBust] = useState(0);
 
   const loadSession = useCallback(async () => {
     setStatus("loading");
@@ -104,6 +107,34 @@ export function AdminPanel() {
       );
       return { ...prev, services };
     });
+  }
+
+  function updateSlide(index: number, patch: Partial<SlideItem>) {
+    setContent((prev) => {
+      if (!prev) return prev;
+      const slides = prev.slides.map((slide, i) => (i === index ? { ...slide, ...patch } : slide));
+      return { ...prev, slides };
+    });
+  }
+
+  async function handleSlideUpload(slideId: string, file: File | undefined) {
+    if (!file || !content) return;
+    setUploads((prev) => ({ ...prev, [slideId]: "uploading" }));
+    setMessage("");
+    const body = new FormData();
+    body.set("slideId", slideId);
+    body.set("file", file);
+    const res = await fetch("/api/admin/slides", { method: "POST", body });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setUploads((prev) => ({ ...prev, [slideId]: "error" }));
+      setMessage((data as { error?: string }).error || "Image upload failed.");
+      return;
+    }
+    setContent((data as { content: SiteContent }).content);
+    setPreviewBust(Date.now());
+    setUploads((prev) => ({ ...prev, [slideId]: "idle" }));
+    setMessage("Slide image updated.");
   }
 
   if (status === "loading" && !content) {
@@ -189,7 +220,7 @@ export function AdminPanel() {
           <p
             className={cn(
               "border px-3 py-2 text-sm",
-              message.startsWith("Saved")
+              message.startsWith("Saved") || message.startsWith("Slide image")
                 ? "border-signal/30 bg-accent text-signal-deep"
                 : "border-destructive/40 text-destructive",
             )}
@@ -237,6 +268,86 @@ export function AdminPanel() {
               />
             </label>
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <div>
+            <h2 className="font-heading text-lg font-semibold text-foreground">Hero slides</h2>
+            <p className="mt-1 text-sm text-steel">
+              Replace diagram images (PNG / JPG / WEBP / GIF, max 5 MB) and edit titles shown under the carousel.
+            </p>
+          </div>
+          <ul className="space-y-4">
+            {content.slides.map((slide, index) => {
+              const uploadState = uploads[slide.id] ?? "idle";
+              return (
+                <li key={slide.id} className="grid gap-4 border border-border bg-panel p-5 md:grid-cols-[11rem_1fr]">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] overflow-hidden border border-border bg-background">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`${slide.src}${slide.src.includes("?") ? "&" : "?"}v=${previewBust || "0"}`}
+                        alt={slide.alt || slide.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <label className="block">
+                      <span className="sr-only">Replace image for {slide.title}</span>
+                      <Input
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp,image/gif"
+                        className="h-auto cursor-pointer bg-background px-2 py-2 text-xs file:mr-2 file:border-0 file:bg-transparent file:text-xs file:font-medium"
+                        disabled={uploadState === "uploading"}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          void handleSlideUpload(slide.id, file);
+                          e.target.value = "";
+                        }}
+                      />
+                    </label>
+                    <p className="font-mono text-[0.65rem] text-steel">
+                      {uploadState === "uploading"
+                        ? "Uploading…"
+                        : uploadState === "error"
+                          ? "Upload failed"
+                          : "Replace image"}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <p className="font-mono text-xs text-signal">
+                      Slide {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
+                      Title
+                      <Input
+                        value={slide.title}
+                        onChange={(e) => updateSlide(index, { title: e.target.value })}
+                        className="h-10 bg-background"
+                        required
+                      />
+                    </label>
+                    <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
+                      Caption
+                      <Input
+                        value={slide.caption}
+                        onChange={(e) => updateSlide(index, { caption: e.target.value })}
+                        className="h-10 bg-background"
+                        required
+                      />
+                    </label>
+                    <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
+                      Alt text
+                      <Input
+                        value={slide.alt}
+                        onChange={(e) => updateSlide(index, { alt: e.target.value })}
+                        className="h-10 bg-background"
+                      />
+                    </label>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </section>
 
         <section className="space-y-4">

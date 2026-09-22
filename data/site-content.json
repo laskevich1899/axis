@@ -2,7 +2,7 @@
   "contact": {
     "email": "hello@axisbim.com",
     "phone": "+48 22 555 01 48",
-    "location": "Warsaw, Poland · EU remote"
+    "location": "Warsaw, Poland \u00b7 EU remote"
   },
   "services": [
     {
@@ -38,12 +38,42 @@
     {
       "code": "SVC-04",
       "title": "BIM implementation",
-      "text": "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
+      "text": "Define BEP, detail matrices, naming and responsibilities\u2014then coach project teams until the workflow holds without constant oversight.",
       "points": [
         "BEP & project standards",
         "Role / RACI maps",
         "Pilot project coaching"
       ]
+    }
+  ],
+  "slides": [
+    {
+      "id": "federated-model",
+      "src": "/slides/01-federated-model.png",
+      "title": "Federated model",
+      "caption": "Multidisciplinary coordination in one shared model",
+      "alt": "Multidisciplinary federated BIM model with coordination flows"
+    },
+    {
+      "id": "scan-to-bim",
+      "src": "/slides/02-scan-to-bim.png",
+      "title": "Scan to BIM",
+      "caption": "Point clouds registered into as-built geometry",
+      "alt": "Scan to BIM workflow from point cloud capture to as-built model"
+    },
+    {
+      "id": "clash-detection",
+      "src": "/slides/03-clash-detection.png",
+      "title": "Clash detection",
+      "caption": "Discipline overlays reviewed before documents freeze",
+      "alt": "Clash detection with discipline overlay and issue markup"
+    },
+    {
+      "id": "coordinated-docs",
+      "src": "/slides/04-coordinated-docs.png",
+      "title": "Documents",
+      "caption": "Sheets, sections and IFC packages from the model",
+      "alt": "Coordinated documents output from the federated model"
     }
   ]
 }

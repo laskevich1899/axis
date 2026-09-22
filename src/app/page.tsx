@@ -37,7 +37,7 @@ const stack = [
 ];
 
 export default async function Home() {
-  const { contact, services } = await readSiteContent();
+  const { contact, services, slides } = await readSiteContent();
 
   return (
     <div className="flex min-h-full flex-col">
@@ -112,7 +112,7 @@ export default async function Home() {
 
             <Reveal delayMs={120}>
               <figure className="overflow-hidden rounded border border-border bg-panel shadow-sm">
-                <BimHeroVisual />
+                <BimHeroVisual slides={slides} />
               </figure>
             </Reveal>
           </div>
