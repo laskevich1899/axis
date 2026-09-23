@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { AxisLogo } from "@/components/axis-logo";
 import { BimHeroVisual } from "@/components/bim-hero-visual";
+import { SiteHeader } from "@/components/site-header";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
 import { readSiteContent } from "@/lib/site-content";
@@ -39,34 +40,11 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-full flex-col">
-      <header className="sticky top-0 z-20 border-b border-border bg-panel/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 md:px-8">
-          <a href="#top" className="min-w-0 transition-opacity hover:opacity-80">
-            <AxisLogo variant="lockup" />
-          </a>
-          <nav className="hidden items-center gap-6 text-sm text-steel md:flex" aria-label="Primary">
-            <a href="#services" className="hover:text-foreground">
-              Services
-            </a>
-            <a href="#sectors" className="hover:text-foreground">
-              Sectors
-            </a>
-            <a href="#method" className="hover:text-foreground">
-              Method
-            </a>
-            <a href="#contact" className="hover:text-foreground">
-              Contact
-            </a>
-          </nav>
-          <a href="#contact" className={cn(buttonVariants({ size: "lg" }), "h-9 shrink-0 rounded px-3.5 text-sm")}>
-            Request brief
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="top" className="flex-1">
         <section className="hero-atmosphere border-b border-border">
-          <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-12 md:grid-cols-2 md:gap-10 md:px-8 md:py-14">
+          <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 py-8 sm:px-5 sm:py-12 md:grid-cols-2 md:gap-10 md:px-8 md:py-14">
             <div>
               <Reveal>
                 <p className="font-mono text-xs tracking-wide text-signal uppercase">
@@ -74,7 +52,7 @@ export default async function Home() {
                 </p>
               </Reveal>
               <Reveal delayMs={80}>
-                <h1 className="mt-3 max-w-lg font-heading text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+                <h1 className="mt-3 max-w-lg font-heading text-[1.7rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
                   Engineering-grade BIM for models, drawings and delivery
                 </h1>
               </Reveal>
@@ -241,7 +219,7 @@ export default async function Home() {
                 <div>
                   <dt className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">Email</dt>
                   <dd>
-                    <a className="text-foreground hover:underline" href={`mailto:${contact.email}`}>
+                    <a className="break-all text-foreground hover:underline" href={`mailto:${contact.email}`}>
                       {contact.email}
                     </a>
                   </dd>
@@ -262,7 +240,7 @@ export default async function Home() {
       </main>
 
       <footer className="border-t border-border bg-background">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm text-steel md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-steel sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
           <AxisLogo variant="lockup" />
           <p className="font-mono text-xs">BIM modeling · engineering · 3D visualization</p>
           <div className="flex items-center gap-4 text-xs">

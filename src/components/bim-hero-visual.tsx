@@ -103,12 +103,12 @@ export function BimHeroVisual({ slides }: Props) {
         )}
       </div>
 
-      <figcaption className="flex items-center gap-3 border-t border-border bg-panel px-3 py-2.5">
+      <figcaption className="flex flex-col gap-2 border-t border-border bg-panel px-3 py-2.5 sm:flex-row sm:items-center sm:gap-3">
         <div className="min-w-0 flex-1">
           <p className="font-mono text-[0.65rem] tracking-wide text-signal uppercase">
             {String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")} · {slide.title}
           </p>
-          <p className="truncate text-sm text-steel">{slide.caption}</p>
+          <p className="text-sm leading-snug text-steel sm:truncate">{slide.caption}</p>
         </div>
         {count > 1 && (
           <div className="relative z-10 flex shrink-0 items-center gap-1" role="tablist" aria-label="Diagram slides">

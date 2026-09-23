@@ -88,9 +88,9 @@ export function AxisLogo({ className, variant = "lockup" }: AxisLogoProps) {
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <AxisLogoMark className="w-16 shrink-0 sm:w-[4.25rem]" />
-      <span className="flex flex-col leading-none">
-        <span className="font-heading text-[0.95rem] font-semibold tracking-tight text-foreground sm:text-base">
+      <AxisLogoMark className="w-11 shrink-0 sm:w-[4.25rem]" />
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className="truncate font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base">
           Axis BIM Solutions
         </span>
         <span className="mt-1 hidden font-mono text-[0.62rem] tracking-wide text-steel uppercase sm:block">
