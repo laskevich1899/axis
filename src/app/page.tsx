@@ -6,8 +6,6 @@ import { Reveal } from "@/components/reveal";
 import { readSiteContent } from "@/lib/site-content";
 import { cn } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 const steps = [
   {
     title: "Survey",
