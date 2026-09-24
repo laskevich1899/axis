@@ -44,8 +44,8 @@ export default async function Home() {
 
       <main id="top" className="flex-1">
         <section className="hero-atmosphere border-b border-border">
-          <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 py-8 sm:px-5 sm:py-12 md:grid-cols-2 md:gap-10 md:px-8 md:py-14">
-            <div>
+          <div className="relative z-[1] mx-auto grid max-w-6xl items-center gap-6 px-4 py-8 sm:px-5 sm:py-12 md:grid-cols-2 md:gap-10 md:px-8 md:py-14">
+            <div className="hero-copy">
               <Reveal>
                 <p className="font-mono text-xs tracking-wide text-signal uppercase">
                   Axis BIM Solutions · Warsaw
