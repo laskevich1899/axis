@@ -1,8 +1,8 @@
 {
   "contact": {
-    "email": "hello@axisbim.com",
-    "phone": "+48 22 555 01 48",
-    "location": "Warsaw, Poland \u00b7 EU remote"
+    "email": "contact@axisbimsolutions.com",
+    "phone": "+48 512 089 563",
+    "location": "Warsaw, Poland · EU/US remote"
   },
   "services": [
     {
@@ -38,7 +38,7 @@
     {
       "code": "SVC-04",
       "title": "BIM implementation",
-      "text": "Define BEP, detail matrices, naming and responsibilities\u2014then coach project teams until the workflow holds without constant oversight.",
+      "text": "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
       "points": [
         "BEP & project standards",
         "Role / RACI maps",
