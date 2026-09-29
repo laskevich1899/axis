@@ -3,24 +3,26 @@ import { cn } from "@/lib/utils";
 type AxisLogoProps = {
   className?: string;
   variant?: "mark" | "lockup" | "stacked";
+  tone?: "default" | "onDark";
 };
 
-export function AxisLogoMark({ className }: { className?: string }) {
+export function AxisLogoMark({ className, tone = "default" }: { className?: string; tone?: "default" | "onDark" }) {
+  const gradientId = tone === "onDark" ? "absStrokeOnDark" : "absStroke";
   return (
     <svg
       viewBox="0 0 360 140"
-      className={cn("h-auto w-full text-[#2f5f8f]", className)}
+      className={cn("h-auto w-full", tone === "onDark" ? "text-[#e6d7b8]" : "text-[#2f5f8f]", className)}
       role="img"
       aria-label="Axis BIM Solutions monogram ABS"
     >
       <defs>
-        <linearGradient id="absStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3d4a5c" />
-          <stop offset="100%" stopColor="#5a6573" />
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={tone === "onDark" ? "#e6d7b8" : "#3d4a5c"} />
+          <stop offset="100%" stopColor={tone === "onDark" ? "#c2b08a" : "#5a6573"} />
         </linearGradient>
       </defs>
 
-      <g stroke="url(#absStroke)" strokeWidth="1.6" fill="none" strokeLinejoin="round">
+      <g stroke={`url(#${gradientId})`} strokeWidth="1.6" fill="none" strokeLinejoin="round">
         <path d="M28 118 L70 22 L112 118" />
         <path d="M46 78 L94 78" />
         <path d="M70 22 L70 118" opacity="0.45" />
@@ -36,7 +38,7 @@ export function AxisLogoMark({ className }: { className?: string }) {
         <circle cx="94" cy="78" r="1.8" />
       </g>
 
-      <g stroke="url(#absStroke)" strokeWidth="1.6" fill="none" strokeLinejoin="round">
+      <g stroke={`url(#${gradientId})`} strokeWidth="1.6" fill="none" strokeLinejoin="round">
         <path d="M142 22 L142 118" />
         <path d="M142 22 L188 22 Q218 22 218 48 Q218 70 188 70 L142 70" />
         <path d="M142 70 L194 70 Q226 70 226 96 Q226 118 194 118 L142 118" />
@@ -52,7 +54,7 @@ export function AxisLogoMark({ className }: { className?: string }) {
         <circle cx="226" cy="96" r="2" />
       </g>
 
-      <g stroke="url(#absStroke)" strokeWidth="1.6" fill="none" strokeLinejoin="round">
+      <g stroke={`url(#${gradientId})`} strokeWidth="1.6" fill="none" strokeLinejoin="round">
         <path d="M320 40 Q320 22 292 22 L268 22 Q244 22 244 46 Q244 66 268 70 L300 76 Q324 80 324 100 Q324 118 296 118 L268 118 Q244 118 244 100" />
         <path d="M256 40 L304 40" opacity="0.35" />
         <path d="M260 100 L308 100" opacity="0.35" />
@@ -69,9 +71,9 @@ export function AxisLogoMark({ className }: { className?: string }) {
   );
 }
 
-export function AxisLogo({ className, variant = "lockup" }: AxisLogoProps) {
+export function AxisLogo({ className, variant = "lockup", tone = "default" }: AxisLogoProps) {
   if (variant === "mark") {
-    return <AxisLogoMark className={cn("w-28", className)} />;
+    return <AxisLogoMark tone={tone} className={cn("w-28", className)} />;
   }
 
   if (variant === "stacked") {
@@ -88,12 +90,22 @@ export function AxisLogo({ className, variant = "lockup" }: AxisLogoProps) {
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <AxisLogoMark className="w-11 shrink-0 sm:w-[4.25rem]" />
+      <AxisLogoMark tone={tone} className="w-11 shrink-0 sm:w-[4.25rem]" />
       <span className="flex min-w-0 flex-col leading-none">
-        <span className="truncate font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base">
+        <span
+          className={cn(
+            "truncate font-heading text-sm font-semibold tracking-tight sm:text-base",
+            tone === "onDark" ? "text-white" : "text-foreground",
+          )}
+        >
           Axis BIM Solutions
         </span>
-        <span className="mt-1 hidden font-mono text-[0.62rem] tracking-wide text-steel uppercase sm:block">
+        <span
+          className={cn(
+            "mt-1 hidden font-mono text-[0.62rem] tracking-wide uppercase sm:block",
+            tone === "onDark" ? "text-[#c2b08a]" : "text-steel",
+          )}
+        >
           Modeling · Eng · Viz
         </span>
       </span>
