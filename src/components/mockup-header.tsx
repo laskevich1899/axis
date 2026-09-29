@@ -17,9 +17,14 @@ export function MockupHeader({ email, phone }: { email: string; phone: string })
     <header className="sticky top-0 z-40 bg-[#161e38] text-white">
       <div className="border-b border-white/10">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 text-[11px] tracking-[0.12em] text-white/70 uppercase md:px-8">
-          <a href="/" className="hover:text-white">
-            Current site
-          </a>
+          <span className="flex items-center gap-4">
+            <a href="/" className="hover:text-white">
+              Current site
+            </a>
+            <a href="/mockup/headers" className="hover:text-white">
+              Header options
+            </a>
+          </span>
           <div className="flex items-center gap-4">
             <a className="hidden hover:text-white sm:inline" href={`mailto:${email}`}>
               {email}

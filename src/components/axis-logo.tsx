@@ -4,6 +4,9 @@ type AxisLogoProps = {
   className?: string;
   variant?: "mark" | "lockup" | "stacked";
   tone?: "default" | "onDark";
+  /** False hides the line under the name. A string replaces the default abbreviation. */
+  subtitle?: string | false;
+  subtitleClassName?: string;
 };
 
 export function AxisLogoMark({ className, tone = "default" }: { className?: string; tone?: "default" | "onDark" }) {
@@ -71,7 +74,13 @@ export function AxisLogoMark({ className, tone = "default" }: { className?: stri
   );
 }
 
-export function AxisLogo({ className, variant = "lockup", tone = "default" }: AxisLogoProps) {
+export function AxisLogo({
+  className,
+  variant = "lockup",
+  tone = "default",
+  subtitle,
+  subtitleClassName,
+}: AxisLogoProps) {
   if (variant === "mark") {
     return <AxisLogoMark tone={tone} className={cn("w-28", className)} />;
   }
@@ -100,14 +109,17 @@ export function AxisLogo({ className, variant = "lockup", tone = "default" }: Ax
         >
           Axis BIM Solutions
         </span>
-        <span
-          className={cn(
-            "mt-1 hidden font-mono text-[0.62rem] tracking-wide uppercase sm:block",
-            tone === "onDark" ? "text-[#c2b08a]" : "text-steel",
-          )}
-        >
-          Modeling · Eng · Viz
-        </span>
+        {subtitle === false ? null : (
+          <span
+            className={cn(
+              "mt-1 hidden font-mono text-[0.62rem] tracking-wide uppercase sm:block",
+              tone === "onDark" ? "text-[#c2b08a]" : "text-steel",
+              subtitleClassName,
+            )}
+          >
+            {subtitle ?? "Modeling · Eng · Viz"}
+          </span>
+        )}
       </span>
     </span>
   );
