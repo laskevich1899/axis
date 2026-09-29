@@ -229,9 +229,12 @@ export default async function Home() {
           </div>
         </div>
         <div className="border-t border-white/10">
-          <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-white/50 md:px-8">
-            © {new Date().getFullYear()} Axis BIM Solutions
-          </p>
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 text-xs text-white/50 md:px-8">
+            <p>© {new Date().getFullYear()} Axis BIM Solutions</p>
+            <a href="/admin" className="hover:text-white">
+              Admin
+            </a>
+          </div>
         </div>
       </footer>
     </div>

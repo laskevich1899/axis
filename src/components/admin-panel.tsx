@@ -32,6 +32,11 @@ export function AdminPanel() {
     setMessage("");
     try {
       const authRes = await fetch("/api/admin/auth", { cache: "no-store" });
+      if (!authRes.ok) {
+        setStatus("login");
+        setMessage("Sign-in needs the site app. On the public page this editor cannot save changes.");
+        return;
+      }
       const auth = (await authRes.json()) as { authenticated: boolean };
       if (!auth.authenticated) {
         setStatus("login");
@@ -465,7 +470,7 @@ function Shell({
       <header className="border-b border-border bg-panel">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-5 py-3 md:px-8">
           <Link href="/" className="min-w-0 transition-opacity hover:opacity-80">
-            <AxisLogo variant="lockup" />
+            <AxisLogo variant="lockup" subtitle="Models, drawings and project setup" />
           </Link>
           <div className="flex items-center gap-2">{actions}</div>
         </div>
