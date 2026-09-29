@@ -79,7 +79,7 @@ export function ContactForm() {
       </label>
       <div className="flex flex-col gap-2 pt-1">
         <Button type="submit" size="lg" className="h-10 w-fit rounded px-5" disabled={status === "loading"}>
-          {status === "loading" ? "Sending…" : "Submit brief"}
+          {status === "loading" ? "Sending…" : "Submit request"}
         </Button>
         {status === "success" && (
           <p className="border border-signal/30 bg-accent px-3 py-2 text-sm text-signal-deep" role="status">

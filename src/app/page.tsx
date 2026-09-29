@@ -9,16 +9,16 @@ import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    title: "Survey",
-    text: "Audit models, exchanges and handoff points between design, review and site.",
+    title: "Assess",
+    text: "We review your models, workflows and project processes to identify gaps, risks and opportunities for improvement.",
   },
   {
-    title: "Specify",
-    text: "Set detail levels, parameters, CDE folders and clash tolerances for the project type.",
+    title: "Plan",
+    text: "We define the right BIM standards, workflows, information requirements and project setup for your team.",
   },
   {
-    title: "Operate",
-    text: "Run coordination, publish documents, train leads and hand off a working setup.",
+    title: "Deliver",
+    text: "We implement the agreed workflows, coordinate models, support your team and leave you with a working solution.",
   },
 ];
 
@@ -53,13 +53,13 @@ export default async function Home() {
               </Reveal>
               <Reveal delayMs={80}>
                 <h1 className="mt-3 max-w-lg font-heading text-[1.7rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
-                  Engineering-grade BIM for models, drawings and delivery
+                  A clear digital model for your building
                 </h1>
               </Reveal>
               <Reveal delayMs={150}>
                 <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-steel">
-                  We coordinate multidisciplinary models, produce construction documents from the model and install
-                  BIM processes that hold under real project pressure.
+                  We put architecture, engineering and construction into one shared model, catch conflicts early and
+                  produce the drawings from that model.
                 </p>
               </Reveal>
               <Reveal delayMs={220} className="mt-6 flex flex-wrap gap-2.5">
@@ -77,12 +77,9 @@ export default async function Home() {
                 </a>
               </Reveal>
               <Reveal delayMs={280}>
-                <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-5 font-mono text-xs text-steel">
-                  <li>Detail-level alignment</li>
-                  <li>Clash detection</li>
-                  <li>Scan to BIM</li>
-                  <li>IFC exchange</li>
-                </ul>
+                <p className="mt-7 border-t border-border pt-5 font-mono text-xs leading-relaxed text-steel">
+                  Detail alignment · Clash checks · Scan to BIM · File exchange
+                </p>
               </Reveal>
             </div>
 
@@ -100,11 +97,14 @@ export default async function Home() {
             <div>
               <p className="font-mono text-xs tracking-wide text-signal uppercase">Practice</p>
               <h2 className="mt-1.5 font-heading text-2xl font-semibold tracking-tight text-foreground">
-                From federated model to field-ready set
+                BIM solutions that work in the real world
               </h2>
               <p className="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-steel">
-                Axis supports owners, A/E firms and contractors when geometry, data and documents must stay consistent—
-                including Scan to BIM for existing assets. Warsaw-based, available on-site or remote across the EU.
+                We help owners, designers and contractors create reliable BIM models, coordinate information and turn
+                existing buildings into accurate digital models.
+              </p>
+              <p className="mt-3 font-mono text-xs text-steel">
+                Scan to BIM · BIM modeling · Engineering · 3D visualization
               </p>
             </div>
           </div>
@@ -186,17 +186,20 @@ export default async function Home() {
 
         <section id="method" className="border-b border-border bg-mist">
           <div className="mx-auto max-w-6xl section-compact">
-            <p className="font-mono text-xs tracking-wide text-signal uppercase">Method</p>
+            <p className="font-mono text-xs tracking-wide text-signal uppercase">How we work</p>
             <h2 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-foreground">
-              How an engagement runs
+              From assessment to a working BIM solution
             </h2>
             <ol className="mt-7 grid gap-5 md:grid-cols-3">
               {steps.map((step, index) => (
                 <li key={step.title} className="border-t-2 border-signal pt-4">
-                  <span className="font-mono text-xs text-steel">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-1 font-heading text-lg font-semibold text-foreground">{step.title}</h3>
+                  <h3 className="font-heading text-lg font-semibold text-foreground">
+                    <span className="font-mono text-sm font-medium text-signal">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-steel"> — </span>
+                    {step.title}
+                  </h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-steel">{step.text}</p>
                 </li>
               ))}

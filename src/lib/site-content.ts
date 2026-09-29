@@ -117,7 +117,7 @@ export function normalizeContent(input: SiteContent): SiteContent {
       location: String(input.contact?.location ?? "").trim(),
     },
     services: (input.services ?? []).map((service, index) => ({
-      code: String(service.code ?? `SVC-${String(index + 1).padStart(2, "0")}`).trim(),
+      code: String(service.code ?? String(index + 1).padStart(2, "0")).trim(),
       title: String(service.title ?? "").trim(),
       text: String(service.text ?? "").trim(),
       points: (service.points ?? [])

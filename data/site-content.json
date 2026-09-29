@@ -6,43 +6,43 @@
   },
   "services": [
     {
-      "code": "SVC-01",
+      "code": "01",
       "title": "Model coordination",
-      "text": "Federate disciplines, run clash detection and keep the shared model under version control through design and construction.",
+      "text": "We bring the architect, engineers and contractor into one shared 3D model and flag conflicts before they become problems on site.",
       "points": [
-        "Model federation & issue tracking",
-        "Weekly coordination packages",
-        "CDE structure and access rules"
+        "One shared model for the whole team",
+        "A running list of issues to resolve",
+        "Weekly updates everyone can use"
       ]
     },
     {
-      "code": "SVC-02",
+      "code": "02",
       "title": "Drawing production",
-      "text": "Extract plans, sections, details and schedules from the model so permit and construction sets stay aligned with the geometry.",
+      "text": "We produce plans, sections and schedules from the model, so the drawings match the building being designed.",
       "points": [
-        "Sheet sets & view templates",
-        "IFC / exchange packages",
-        "As-built updates"
+        "Plans, sections and details from the model",
+        "Files other teams can open",
+        "Drawings updated when the design changes"
       ]
     },
     {
-      "code": "SVC-03",
+      "code": "03",
       "title": "Scan to BIM",
-      "text": "Capture existing conditions with point clouds and convert them into accurate as-built models for renovation, fit-out and verification.",
+      "text": "We scan an existing building and turn it into an accurate digital model for renovation or to check the design against what is really there.",
       "points": [
-        "Point cloud registration",
-        "As-built model authoring",
-        "Deviation checks vs design"
+        "A scan of the existing building",
+        "A usable model of what is already built",
+        "A check of the design against the real building"
       ]
     },
     {
-      "code": "SVC-04",
-      "title": "BIM implementation",
-      "text": "Define BEP, detail matrices, naming and responsibilities—then coach project teams until the workflow holds without constant oversight.",
+      "code": "04",
+      "title": "BIM setup",
+      "text": "We set clear rules, file names and responsibilities, then stay with your team until the process works without constant help.",
       "points": [
-        "BEP & project standards",
-        "Role / RACI maps",
-        "Pilot project coaching"
+        "Rules everyone can follow",
+        "Clear roles for each person",
+        "Support on the first live project"
       ]
     }
   ],

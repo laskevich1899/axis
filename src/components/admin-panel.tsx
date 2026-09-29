@@ -364,7 +364,7 @@ export function AdminPanel() {
                     ...content.services,
                     {
                       ...emptyService(),
-                      code: `SVC-${String(content.services.length + 1).padStart(2, "0")}`,
+                      code: String(content.services.length + 1).padStart(2, "0"),
                     },
                   ],
                 })

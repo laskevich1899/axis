@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#services", label: "Services" },
   { href: "#sectors", label: "Sectors" },
-  { href: "#method", label: "Method" },
+  { href: "#method", label: "How we work" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -30,8 +30,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <a href="#contact" className={cn(buttonVariants({ size: "lg" }), "h-9 rounded px-3 text-sm")} onClick={() => setOpen(false)}>
-            <span className="sm:hidden">Brief</span>
-            <span className="hidden sm:inline">Request brief</span>
+            Submit request
           </a>
           <button
             type="button"
