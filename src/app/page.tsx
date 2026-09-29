@@ -244,7 +244,7 @@ export default async function Home() {
 
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-steel sm:px-5 md:flex-row md:items-center md:justify-between md:px-8">
-          <AxisLogo variant="lockup" />
+          <AxisLogo variant="lockup" subtitle="Models, drawings and project setup" />
           <p className="font-mono text-xs">BIM modeling · engineering · 3D visualization</p>
           <div className="flex items-center gap-4 text-xs">
             <p>© {new Date().getFullYear()} Axis BIM Solutions</p>

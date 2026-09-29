@@ -19,7 +19,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-border bg-panel/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2.5 md:px-8 md:py-3">
         <a href="#top" className="min-w-0 transition-opacity hover:opacity-80" onClick={() => setOpen(false)}>
-          <AxisLogo variant="lockup" />
+          <AxisLogo variant="lockup" subtitle="Models, drawings and project setup" />
         </a>
         <nav className="hidden items-center gap-6 text-sm text-steel md:flex" aria-label="Primary">
           {links.map((link) => (

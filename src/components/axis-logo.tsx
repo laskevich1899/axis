@@ -112,8 +112,11 @@ export function AxisLogo({
         {subtitle === false ? null : (
           <span
             className={cn(
-              "mt-1 hidden font-mono text-[0.62rem] tracking-wide uppercase sm:block",
-              tone === "onDark" ? "text-[#c2b08a]" : "text-steel",
+              "mt-1 hidden sm:block",
+              subtitle
+                ? "font-sans text-[0.72rem] leading-snug tracking-normal normal-case"
+                : "font-mono text-[0.62rem] tracking-wide uppercase",
+              tone === "onDark" ? (subtitle ? "text-white/70" : "text-[#c2b08a]") : "text-steel",
               subtitleClassName,
             )}
           >
