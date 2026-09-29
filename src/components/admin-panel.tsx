@@ -69,7 +69,12 @@ export function AdminPanel() {
     if (!res.ok) {
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       setStatus("login");
-      setMessage(data.error || "Login failed.");
+      setMessage(
+        data.error ||
+          (res.status === 404
+            ? "This public page cannot sign in. Open the site app to edit content."
+            : "Login failed."),
+      );
       return;
     }
     setPassword("");
