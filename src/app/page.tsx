@@ -78,7 +78,7 @@ export default async function Home() {
               </Reveal>
               <Reveal delayMs={280}>
                 <p className="mt-7 border-t border-border pt-5 font-mono text-xs leading-relaxed text-steel">
-                  Detail alignment · Clash checks · Scan to BIM · File exchange
+                  Detail-level alignment · Clash detection · Scan to BIM · IFC exchange
                 </p>
               </Reveal>
             </div>
