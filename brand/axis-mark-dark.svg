@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 360 140" role="img" aria-label="Axis BIM Solutions ABS mark">
+  <defs>
+    
+  <linearGradient id="absStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#f7f1dc"/>
+    <stop offset="100%" stop-color="#dcc998"/>
+  </linearGradient>
+
+  </defs>
+  
+  <g stroke="url(#absStroke)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M28 118 L70 22 L112 118"/>
+    <path d="M46 78 L94 78"/>
+    <path d="M70 22 L70 118" opacity="0.5"/>
+    <path d="M40 98 L100 98" opacity="0.4"/>
+    <path d="M52 55 L88 55" opacity="0.45"/>
+    <path d="M58 40 L70 22 L82 40" opacity="0.55"/>
+  </g>
+  <g fill="#f3ebcf">
+    <circle cx="70" cy="22" r="2.8"/>
+    <circle cx="28" cy="118" r="2.38"/>
+    <circle cx="112" cy="118" r="2.38"/>
+    <circle cx="46" cy="78" r="2.0999999999999996"/>
+    <circle cx="94" cy="78" r="2.0999999999999996"/>
+  </g>
+  <g stroke="url(#absStroke)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M142 22 L142 118"/>
+    <path d="M142 22 L188 22 Q218 22 218 48 Q218 70 188 70 L142 70"/>
+    <path d="M142 70 L194 70 Q226 70 226 96 Q226 118 194 118 L142 118"/>
+    <path d="M142 46 L200 46" opacity="0.4"/>
+    <path d="M142 94 L206 94" opacity="0.4"/>
+    <path d="M168 22 L168 118" opacity="0.45"/>
+  </g>
+  <g fill="#f3ebcf">
+    <circle cx="142" cy="22" r="2.52"/>
+    <circle cx="142" cy="70" r="2.52"/>
+    <circle cx="142" cy="118" r="2.52"/>
+    <circle cx="218" cy="48" r="2.38"/>
+    <circle cx="226" cy="96" r="2.38"/>
+  </g>
+  <g stroke="url(#absStroke)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M320 40 Q320 22 292 22 L268 22 Q244 22 244 46 Q244 66 268 70 L300 76 Q324 80 324 100 Q324 118 296 118 L268 118 Q244 118 244 100"/>
+    <path d="M256 40 L304 40" opacity="0.4"/>
+    <path d="M260 100 L308 100" opacity="0.4"/>
+    <path d="M268 70 L300 76" opacity="0.5"/>
+  </g>
+  <g fill="#f3ebcf">
+    <circle cx="292" cy="22" r="2.38"/>
+    <circle cx="244" cy="46" r="2.38"/>
+    <circle cx="284" cy="73" r="2.38"/>
+    <circle cx="324" cy="100" r="2.38"/>
+    <circle cx="268" cy="118" r="2.38"/>
+  </g>
+
+</svg>
