@@ -139,11 +139,12 @@ export function normalizeContent(input: SiteContent): SiteContent {
 
 export function validateContent(content: SiteContent): string | null {
   const { contact, services, slides } = content;
-  if (!contact.email || !contact.phone || !contact.location) {
-    return "Email, phone and location are required.";
+  if (!contact.location) {
+    return "Location is required.";
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
-    return "Enter a valid contact email.";
+  // Email/phone are optional private fields (not shown on the public site).
+  if (contact.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
+    return "Enter a valid contact email, or leave it blank.";
   }
   if (!services.length) {
     return "Add at least one service.";

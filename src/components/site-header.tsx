@@ -10,19 +10,18 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function SiteHeader({ email, phone }: { email: string; phone: string }) {
+export function SiteHeader({ location }: { location?: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 bg-[#161e38] text-white">
-      <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-end gap-4 px-4 py-2 text-[11px] tracking-[0.04em] text-white/80 md:px-8">
-          <a className="normal-case hover:text-white" href={`mailto:${email}`}>
-            {email}
-          </a>
-          <span className="hidden tracking-[0.12em] uppercase sm:inline">{phone}</span>
+      {location ? (
+        <div className="border-b border-white/10">
+          <div className="mx-auto flex max-w-6xl items-center justify-end px-4 py-2 text-[11px] tracking-[0.12em] text-white/70 uppercase md:px-8">
+            <span>{location}</span>
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-8">
         <a href="#top" className="min-w-0" onClick={() => setOpen(false)}>
           <AxisLogo tone="onDark" subtitle="Models, drawings and project setup" />

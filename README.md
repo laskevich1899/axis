@@ -10,9 +10,19 @@ Live: [https://axisbimsolutions.com](https://axisbimsolutions.com)
 - Tailwind CSS + shadcn/ui
 - React 19
 
+## Privacy-first contact
+
+Personal email and phone are **not** shown on the site. Visitors send a request through the form; Web3Forms delivers it to your private inbox.
+
+Required visitor fields: name, email, project brief. Phone and company are optional.
+
+Set `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` (local `.env.local` and GitHub Actions secret `WEB3FORMS_ACCESS_KEY`). Create a free key at [web3forms.com](https://web3forms.com) — your inbox address stays in their dashboard, not in the website HTML.
+
 ## Run locally
 
 ```bash
+cp .env.example .env.local
+# add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=...
 npm install
 npm run dev
 ```
@@ -21,9 +31,7 @@ Open [http://127.0.0.1:4321](http://127.0.0.1:4321).
 
 ## Admin
 
-Edit contact details at [http://127.0.0.1:4321/admin](http://127.0.0.1:4321/admin) (default password `axis-admin`).
-
-On GitHub Pages the public site is a static export — edit `data/site-content.json`, commit and push to update the live site.
+Edit public location / services at [http://127.0.0.1:4321/admin](http://127.0.0.1:4321/admin) (default password `axis-admin`). Admin API works only on a Node host, not on GitHub Pages.
 
 ## Deploy
 
