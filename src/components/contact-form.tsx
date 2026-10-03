@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+/** Private inbox — baked at build time from env; never rendered as visible text on the page. */
+const CONTACT_INBOX = process.env.NEXT_PUBLIC_CONTACT_INBOX?.trim() ?? "";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -42,7 +43,7 @@ export function ContactForm() {
       setMessage("Enter a valid email so we can reply.");
       return;
     }
-    if (!ACCESS_KEY) {
+    if (!CONTACT_INBOX) {
       setStatus("error");
       setMessage("Request inbox is not configured yet. Please try again later.");
       return;
@@ -52,27 +53,27 @@ export function ContactForm() {
     setMessage("");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_INBOX)}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: ACCESS_KEY,
-          subject: `Axis BIM request from ${name}`,
-          from_name: "Axis BIM Solutions website",
           name,
           email,
           phone: phone || "Not provided",
           company: company || "Not provided",
           message: request,
-          replyto: email,
+          _subject: `Axis BIM request from ${name}`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: email,
         }),
       });
 
-      const result = (await response.json()) as { success?: boolean; message?: string };
-      if (!response.ok || !result.success) {
+      const result = (await response.json()) as { success?: boolean | string; message?: string };
+      if (!response.ok || result.success === false || result.success === "false") {
         throw new Error(result.message || "Send failed");
       }
 
@@ -81,7 +82,9 @@ export function ContactForm() {
       setMessage("Thank you. We received your request and will reply by email.");
     } catch {
       setStatus("error");
-      setMessage("Could not send the request. Please try again in a moment.");
+      setMessage(
+        "Could not send the request. If this is the first time, check the inbox for an activation email from FormSubmit, confirm it, then try again.",
+      );
     }
   }
 
@@ -91,7 +94,6 @@ export function ContactForm() {
       className="flex flex-col gap-3 border border-border bg-background p-5"
       noValidate
     >
-      {/* Hidden honeypot */}
       <input
         type="text"
         name="company_website"
