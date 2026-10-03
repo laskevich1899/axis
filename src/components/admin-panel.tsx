@@ -241,10 +241,14 @@ export function AdminPanel() {
         )}
 
         <section className="space-y-4 border border-border bg-panel p-5">
-          <h2 className="font-heading text-lg font-semibold text-foreground">Contact</h2>
+          <h2 className="font-heading text-lg font-semibold text-foreground">Public location</h2>
+          <p className="text-sm text-steel">
+            Email and phone are not shown on the public site. Requests arrive through the contact form inbox
+            (Web3Forms). Only location appears publicly.
+          </p>
           <div className="grid gap-3 md:grid-cols-3">
             <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-              Email
+              Private email note
               <Input
                 type="email"
                 value={content.contact.email}
@@ -252,18 +256,18 @@ export function AdminPanel() {
                   setContent({ ...content, contact: { ...content.contact, email: e.target.value } })
                 }
                 className="h-10 bg-background"
-                required
+                placeholder="Optional — not published"
               />
             </label>
             <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-              Phone
+              Private phone note
               <Input
                 value={content.contact.phone}
                 onChange={(e) =>
                   setContent({ ...content, contact: { ...content.contact, phone: e.target.value } })
                 }
                 className="h-10 bg-background"
-                required
+                placeholder="Optional — not published"
               />
             </label>
             <label className="flex flex-col gap-1.5 text-xs font-medium text-steel md:col-span-1">

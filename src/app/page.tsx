@@ -32,7 +32,7 @@ export default async function Home() {
 
   return (
     <div id="top" className="bg-[#e7e9f2] text-[#161e38]">
-      <SiteHeader email={contact.email} phone={contact.phone} />
+      <SiteHeader location={contact.location} />
 
       <main>
         <section className="relative min-h-[34rem] overflow-hidden bg-[#12182c] text-white md:min-h-[40rem]">
@@ -170,24 +170,18 @@ export default async function Home() {
               <p className="text-[11px] tracking-[0.18em] text-[#4187d3] uppercase">Contact</p>
               <h2 className="mt-3 font-heading text-4xl font-medium tracking-tight">Send a project request</h2>
               <p className="mt-3 text-sm leading-relaxed text-[#3c4658]">
-                A short note is enough: building type, stage and what you need from us.
+                Leave your details in the form. We will reply by email — no public inbox or phone number on this site.
               </p>
               <dl className="mt-8 space-y-4 text-sm">
                 <div>
-                  <dt className="text-[11px] tracking-[0.14em] text-[#4187d3] uppercase">Email</dt>
-                  <dd>
-                    <a className="hover:underline" href={`mailto:${contact.email}`}>
-                      {contact.email}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] tracking-[0.14em] text-[#4187d3] uppercase">Phone</dt>
-                  <dd>{contact.phone}</dd>
-                </div>
-                <div>
                   <dt className="text-[11px] tracking-[0.14em] text-[#4187d3] uppercase">Location</dt>
                   <dd>{contact.location}</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] tracking-[0.14em] text-[#4187d3] uppercase">What to include</dt>
+                  <dd className="text-[#3c4658]">
+                    Building type, project stage, and whether you need a model, drawings or process setup.
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -203,11 +197,9 @@ export default async function Home() {
             <p className="mt-3 text-sm leading-relaxed">
               {contact.location}
               <br />
-              <a className="hover:text-white" href={`mailto:${contact.email}`}>
-                {contact.email}
+              <a href="#contact" className="hover:text-white">
+                Send a project request
               </a>
-              <br />
-              {contact.phone}
             </p>
           </div>
           <div>
