@@ -12,11 +12,11 @@ Live: [https://axisbimsolutions.com](https://axisbimsolutions.com)
 
 ## Privacy-first contact
 
-Personal email and phone are **not** shown on the site. Visitors send a request through the form; Web3Forms delivers it to your private inbox.
+Personal email and phone are **not** shown on the site. Visitors send a request through the form; [FormSubmit](https://formsubmit.co) delivers it to your private inbox.
 
 Required visitor fields: name, email, project brief. Phone and company are optional.
 
-Set `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` (local `.env.local` and GitHub Actions secret `WEB3FORMS_ACCESS_KEY`). Create a free key at [web3forms.com](https://web3forms.com) — your inbox address stays in their dashboard, not in the website HTML.
+Set `NEXT_PUBLIC_CONTACT_INBOX` (local `.env.local` and GitHub Actions secret `CONTACT_INBOX`) to the address that should receive requests. The first real submission triggers a one-time activation email from FormSubmit — confirm it, then submissions arrive normally.
 
 ## Run locally
 
