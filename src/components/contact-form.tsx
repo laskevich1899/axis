@@ -6,13 +6,21 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 type Status = "idle" | "loading" | "success" | "error";
+type ContactPreference = "email" | "phone" | "either";
 
 /** Web3Forms access key — public alias for your inbox; email itself is not in the page. */
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
 
+const PREFERENCE_LABELS: Record<ContactPreference, string> = {
+  email: "Email",
+  phone: "Phone",
+  either: "Either email or phone",
+};
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [preference, setPreference] = useState<ContactPreference>("email");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,8 +30,9 @@ export function ContactForm() {
     // Honeypot — bots fill this, humans never see it
     if (String(data.get("company_website") ?? "").trim()) {
       setStatus("success");
-      setMessage("Thank you. We received your request and will reply by email.");
+      setMessage("Thank you. We will get back to you shortly.");
       form.reset();
+      setPreference("email");
       return;
     }
 
@@ -32,6 +41,7 @@ export function ContactForm() {
     const phone = String(data.get("phone") ?? "").trim();
     const company = String(data.get("company") ?? "").trim();
     const request = String(data.get("request") ?? "").trim();
+    const preferred = String(data.get("preferred_contact") ?? "email").trim() as ContactPreference;
 
     if (!name || !email || !request) {
       setStatus("error");
@@ -41,6 +51,15 @@ export function ContactForm() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setStatus("error");
       setMessage("Enter a valid email so we can reply.");
+      return;
+    }
+    if ((preferred === "phone" || preferred === "either") && !phone) {
+      setStatus("error");
+      setMessage(
+        preferred === "phone"
+          ? "Add a phone number so we can call you."
+          : "Add a phone number, or choose email as the preferred contact method.",
+      );
       return;
     }
     if (!ACCESS_KEY) {
@@ -67,6 +86,7 @@ export function ContactForm() {
           email,
           phone: phone || "Not provided",
           company: company || "Not provided",
+          preferred_contact: PREFERENCE_LABELS[preferred] ?? preferred,
           message: request,
           replyto: email,
           botcheck: false,
@@ -79,8 +99,9 @@ export function ContactForm() {
       }
 
       form.reset();
+      setPreference("email");
       setStatus("success");
-      setMessage("Thank you. We received your request and will reply by email.");
+      setMessage("Thank you. We will get back to you shortly.");
     } catch {
       setStatus("error");
       setMessage("Could not send the request. Please try again in a moment.");
@@ -121,7 +142,10 @@ export function ContactForm() {
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-          Phone <span className="font-normal text-steel/70">(optional)</span>
+          Phone {(preference === "phone" || preference === "either") && "*"}
+          {preference === "email" ? (
+            <span className="font-normal text-steel/70"> (optional)</span>
+          ) : null}
           <Input
             name="phone"
             type="tel"
@@ -142,6 +166,32 @@ export function ContactForm() {
           />
         </label>
       </div>
+
+      <fieldset className="space-y-2" disabled={status === "loading"}>
+        <legend className="text-xs font-medium text-steel">Preferred contact method *</legend>
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-4">
+          {(
+            [
+              ["email", "Email"],
+              ["phone", "Phone"],
+              ["either", "Either"],
+            ] as const
+          ).map(([value, label]) => (
+            <label key={value} className="inline-flex items-center gap-2 text-sm text-[#3c4658]">
+              <input
+                type="radio"
+                name="preferred_contact"
+                value={value}
+                checked={preference === value}
+                onChange={() => setPreference(value)}
+                className="size-4 accent-[#4187d3]"
+              />
+              {label}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
       <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
         Project brief *
         <Textarea
@@ -152,9 +202,6 @@ export function ContactForm() {
           disabled={status === "loading"}
         />
       </label>
-      <p className="text-xs leading-relaxed text-steel/80">
-        We only use these details to reply to your request. Nothing is published on the site.
-      </p>
       <div className="flex flex-col gap-2 pt-1">
         <Button type="submit" size="lg" className="h-10 w-fit rounded px-5" disabled={status === "loading"}>
           {status === "loading" ? "Sending…" : "Submit request"}
