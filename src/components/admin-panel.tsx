@@ -244,7 +244,7 @@ export function AdminPanel() {
           <h2 className="font-heading text-lg font-semibold text-foreground">Public location</h2>
           <p className="text-sm text-steel">
             Email and phone are not shown on the public site. Requests arrive through the contact form
-            inbox (FormSubmit). Only location appears publicly.
+            inbox (Web3Forms). Only location appears publicly.
           </p>
           <div className="grid gap-3 md:grid-cols-3">
             <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
