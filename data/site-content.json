@@ -1,0 +1,79 @@
+{
+  "contact": {
+    "email": "axisbimsolutions@gmail.com",
+    "phone": "+48 512 089 563",
+    "location": "Warsaw, Poland · EU/US remote"
+  },
+  "services": [
+    {
+      "code": "01",
+      "title": "Model coordination",
+      "text": "We bring the architect, engineers and contractor into one shared 3D model and flag conflicts before they become problems on site.",
+      "points": [
+        "One shared model for the whole team",
+        "A running list of issues to resolve",
+        "Weekly updates everyone can use"
+      ]
+    },
+    {
+      "code": "02",
+      "title": "Drawing production",
+      "text": "We produce plans, sections and schedules from the model, so the drawings match the building being designed.",
+      "points": [
+        "Plans, sections and details from the model",
+        "Files other teams can open",
+        "Drawings updated when the design changes"
+      ]
+    },
+    {
+      "code": "03",
+      "title": "Scan to BIM",
+      "text": "We scan an existing building and turn it into an accurate digital model for renovation or to check the design against what is really there.",
+      "points": [
+        "A scan of the existing building",
+        "A usable model of what is already built",
+        "A check of the design against the real building"
+      ]
+    },
+    {
+      "code": "04",
+      "title": "BIM setup",
+      "text": "We set clear rules, file names and responsibilities, then stay with your team until the process works without constant help.",
+      "points": [
+        "Rules everyone can follow",
+        "Clear roles for each person",
+        "Support on the first live project"
+      ]
+    }
+  ],
+  "slides": [
+    {
+      "id": "federated-model",
+      "src": "/slides/01-federated-model.png",
+      "title": "Federated model",
+      "caption": "Multidisciplinary coordination in one shared model",
+      "alt": "Multidisciplinary federated BIM model with coordination flows"
+    },
+    {
+      "id": "scan-to-bim",
+      "src": "/slides/02-scan-to-bim.png",
+      "title": "Scan to BIM",
+      "caption": "Point clouds registered into as-built geometry",
+      "alt": "Scan to BIM workflow from point cloud capture to as-built model"
+    },
+    {
+      "id": "clash-detection",
+      "src": "/slides/03-clash-detection.png",
+      "title": "Clash detection",
+      "caption": "Discipline overlays reviewed before documents freeze",
+      "alt": "Clash detection with discipline overlay and issue markup"
+    },
+    {
+      "id": "coordinated-docs",
+      "src": "/slides/04-coordinated-docs.png",
+      "title": "Documents",
+      "caption": "Sheets, sections and IFC packages from the model",
+      "alt": "Coordinated documents output from the federated model"
+    }
+  ]
+}
