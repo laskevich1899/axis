@@ -41,14 +41,21 @@ export default async function Home() {
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#101628] via-[#101628]/82 to-[#101628]/20" />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-[#070b16] via-[#070b16]/92 to-[#070b16]/45 md:via-[#070b16]/85 md:to-[#070b16]/30"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-[#070b16]/75 via-transparent to-[#070b16]/45"
+            aria-hidden
+          />
           <div className="relative mx-auto flex min-h-[34rem] max-w-6xl items-center px-4 py-16 md:min-h-[40rem] md:px-8">
-            <div className="max-w-xl">
-              <p className="text-[11px] tracking-[0.18em] text-[#c2b08a] uppercase">Axis BIM Solutions · Warsaw</p>
-              <h1 className="mt-4 font-heading text-[2.4rem] leading-[1.05] font-medium tracking-tight sm:text-5xl md:text-6xl">
-                A clear <span className="text-[#c2b08a]">digital model</span> for your building
+            <div className="max-w-xl hero-copy-readable">
+              <p className="text-[11px] tracking-[0.18em] text-[#e6d7b8] uppercase">Axis BIM Solutions · Warsaw</p>
+              <h1 className="mt-4 font-heading text-[2.4rem] leading-[1.05] font-medium tracking-tight text-white sm:text-5xl md:text-6xl">
+                A clear <span className="text-[#e6d7b8]">digital model</span> for your building
               </h1>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-white/80">
+              <p className="mt-5 max-w-md text-base leading-relaxed text-white/90">
                 We put architecture, engineering and construction into one shared model, catch conflicts early and
                 produce the drawings from that model.
               </p>
@@ -58,12 +65,12 @@ export default async function Home() {
                 </a>
                 <a
                   href="#services"
-                  className="inline-flex h-11 items-center border border-white/45 px-6 text-[11px] font-semibold tracking-[0.14em] uppercase hover:bg-white/10"
+                  className="inline-flex h-11 items-center border border-white/70 bg-white/10 px-6 text-[11px] font-semibold tracking-[0.14em] uppercase text-white backdrop-blur-sm hover:bg-white/20"
                 >
                   Service scope
                 </a>
               </div>
-              <p className="mt-8 max-w-lg text-xs tracking-wide text-white/70">
+              <p className="mt-8 max-w-lg text-xs tracking-wide text-white/80">
                 Detail-level alignment · Clash detection · Scan to BIM · IFC exchange
               </p>
             </div>

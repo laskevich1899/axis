@@ -16,11 +16,11 @@ export function SiteHeader({ email, phone }: { email: string; phone: string }) {
   return (
     <header className="sticky top-0 z-40 bg-[#161e38] text-white">
       <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-end gap-4 px-4 py-2 text-[11px] tracking-[0.12em] text-white/70 uppercase md:px-8">
-          <a className="hover:text-white" href={`mailto:${email}`}>
+        <div className="mx-auto flex max-w-6xl items-center justify-end gap-4 px-4 py-2 text-[11px] tracking-[0.04em] text-white/80 md:px-8">
+          <a className="normal-case hover:text-white" href={`mailto:${email}`}>
             {email}
           </a>
-          <span className="hidden sm:inline">{phone}</span>
+          <span className="hidden tracking-[0.12em] uppercase sm:inline">{phone}</span>
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-8">
