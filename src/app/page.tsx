@@ -42,11 +42,11 @@ export default async function Home() {
             className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[#0b1020] via-[#0b1020]/88 to-[#0b1020]/35 md:via-[#0b1020]/80 md:to-[#0b1020]/25"
+            className="absolute inset-0 bg-gradient-to-r from-[#070b16] via-[#070b16]/92 to-[#070b16]/45 md:via-[#070b16]/85 md:to-[#070b16]/30"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-[#0b1020]/70 via-transparent to-[#0b1020]/40"
+            className="absolute inset-0 bg-gradient-to-t from-[#070b16]/75 via-transparent to-[#070b16]/45"
             aria-hidden
           />
           <div className="relative mx-auto flex min-h-[34rem] max-w-6xl items-center px-4 py-16 md:min-h-[40rem] md:px-8">
