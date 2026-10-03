@@ -32,7 +32,7 @@ jobs:
 
       - name: Build static export
         env:
-          NEXT_PUBLIC_CONTACT_INBOX: ${{ secrets.CONTACT_INBOX }}
+          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
         run: npm run build:pages
 
       - name: Prepare publish folder
