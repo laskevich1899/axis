@@ -170,7 +170,7 @@ export default async function Home() {
               <p className="text-[11px] tracking-[0.18em] text-[#4187d3] uppercase">Contact</p>
               <h2 className="mt-3 font-heading text-4xl font-medium tracking-tight">Send a project request</h2>
               <p className="mt-3 text-sm leading-relaxed text-[#3c4658]">
-                Leave your details in the form. We will reply by email — no public inbox or phone number on this site.
+                Fill in the form and we will get back to you shortly.
               </p>
               <dl className="mt-8 space-y-4 text-sm">
                 <div>
