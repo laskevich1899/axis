@@ -98,12 +98,12 @@ export function AxisLogo({
   }
 
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <AxisLogoMark tone={tone} className="w-11 shrink-0 sm:w-[4.25rem]" />
-      <span className="flex min-w-0 flex-col leading-none">
+    <span className={cn("flex min-w-0 max-w-full items-center gap-2 sm:gap-2.5", className)}>
+      <AxisLogoMark tone={tone} className="w-10 shrink-0 sm:w-[4.25rem]" />
+      <span className="flex min-w-0 flex-1 flex-col leading-none">
         <span
           className={cn(
-            "truncate font-heading text-sm font-semibold tracking-tight sm:text-base",
+            "font-heading text-[0.8125rem] font-semibold tracking-tight sm:truncate sm:text-base",
             tone === "onDark" ? "text-white" : "text-foreground",
           )}
         >

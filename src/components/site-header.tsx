@@ -17,13 +17,13 @@ export function SiteHeader({ location }: { location?: string }) {
     <header className="sticky top-0 z-40 bg-[#161e38] text-white">
       {location ? (
         <div className="border-b border-white/10">
-          <div className="mx-auto flex max-w-6xl items-center justify-end px-4 py-2 text-[11px] tracking-[0.12em] text-white/70 uppercase md:px-8">
-            <span>{location}</span>
+          <div className="mx-auto flex max-w-6xl items-center justify-end px-4 py-2 text-[10px] tracking-[0.08em] text-white/70 uppercase sm:text-[11px] sm:tracking-[0.12em] md:px-8">
+            <span className="max-w-full text-right leading-snug break-words">{location}</span>
           </div>
         </div>
       ) : null}
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-8">
-        <a href="#top" className="min-w-0" onClick={() => setOpen(false)}>
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 md:px-8">
+        <a href="#top" className="flex min-w-0 flex-1 items-center" onClick={() => setOpen(false)}>
           <AxisLogo tone="onDark" subtitle="Models, drawings and project setup" />
         </a>
         <nav className="hidden items-center gap-7 text-sm text-white/85 lg:flex" aria-label="Primary">
@@ -33,10 +33,11 @@ export function SiteHeader({ location }: { location?: string }) {
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
+          {/* Full CTA from md up — on phones it crowds the logo (esp. Android Chrome) */}
           <a
             href="#contact"
-            className="inline-flex h-10 shrink-0 items-center bg-[#4187d3] px-3 text-[10px] font-semibold tracking-[0.12em] whitespace-nowrap text-white uppercase hover:bg-[#3677c0] sm:px-4 sm:text-[11px] sm:tracking-[0.14em]"
+            className="hidden h-10 items-center bg-[#4187d3] px-4 text-[11px] font-semibold tracking-[0.14em] whitespace-nowrap text-white uppercase hover:bg-[#3677c0] md:inline-flex"
             onClick={() => setOpen(false)}
           >
             Submit request
@@ -65,6 +66,13 @@ export function SiteHeader({ location }: { location?: string }) {
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="mt-2 inline-flex h-10 items-center bg-[#4187d3] px-4 text-[11px] font-semibold tracking-[0.14em] text-white uppercase hover:bg-[#3677c0]"
+            onClick={() => setOpen(false)}
+          >
+            Submit request
+          </a>
         </nav>
       ) : null}
     </header>
