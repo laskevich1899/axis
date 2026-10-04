@@ -111,7 +111,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 border border-border bg-background p-5"
+      className="relative flex flex-col gap-3 border border-border bg-background p-4 sm:p-5"
       noValidate
     >
       <input
@@ -119,7 +119,7 @@ export function ContactForm() {
         name="company_website"
         tabIndex={-1}
         autoComplete="off"
-        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         aria-hidden
       />
 

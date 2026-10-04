@@ -59,18 +59,18 @@ export default async function Home() {
                 We put architecture, engineering and construction into one shared model, catch conflicts early and
                 produce the drawings from that model.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#contact" className={buttonClass}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href="#contact" className={`${buttonClass} w-full justify-center sm:w-auto`}>
                   Discuss a project
                 </a>
                 <a
                   href="#services"
-                  className="inline-flex h-11 items-center border border-white/70 bg-white/10 px-6 text-[11px] font-semibold tracking-[0.14em] uppercase text-white backdrop-blur-sm hover:bg-white/20"
+                  className="inline-flex h-11 w-full items-center justify-center border border-white/70 bg-white/10 px-6 text-[11px] font-semibold tracking-[0.14em] uppercase text-white backdrop-blur-sm hover:bg-white/20 sm:w-auto"
                 >
                   Service scope
                 </a>
               </div>
-              <p className="mt-8 max-w-lg text-xs tracking-wide text-white/80">
+              <p className="mt-8 max-w-lg text-xs leading-relaxed tracking-wide text-white/80">
                 Detail-level alignment · Clash detection · Scan to BIM · IFC exchange
               </p>
             </div>

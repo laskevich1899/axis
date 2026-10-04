@@ -105,10 +105,24 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
-    @apply overflow-x-hidden bg-background text-foreground font-sans antialiased;
+    @apply overflow-x-clip bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Prefer dynamic viewport on mobile browsers (Android Chrome URL bar) */
+  @supports (height: 100dvh) {
+    body {
+      min-height: 100dvh;
+    }
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
   }
 
   ::selection {
