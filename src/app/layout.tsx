@@ -4,13 +4,13 @@ import "./globals.css";
 
 const outfit = Outfit({
   variable: "--font-outfit",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://axisbimsolutions.com"),
   title: "Axis BIM Solutions — Models, drawings and project setup",
   description:
     "We help owners, designers and contractors create reliable BIM models, coordinate information and turn existing buildings into accurate digital models. Based in Warsaw.",

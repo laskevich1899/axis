@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import type { Locale, Messages } from "@/lib/i18n";
 
 type Status = "idle" | "loading" | "success" | "error";
 type ContactPreference = "email" | "phone" | "either";
@@ -11,26 +12,25 @@ type ContactPreference = "email" | "phone" | "either";
 /** Web3Forms access key — public alias for your inbox; email itself is not in the page. */
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
 
-const PREFERENCE_LABELS: Record<ContactPreference, string> = {
-  email: "Email",
-  phone: "Phone",
-  either: "Either email or phone",
-};
-
-export function ContactForm() {
+export function ContactForm({ copy, locale }: { copy: Messages["form"]; locale: Locale }) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [preference, setPreference] = useState<ContactPreference>("email");
+
+  const preferenceLabels: Record<ContactPreference, string> = {
+    email: copy.emailOption,
+    phone: copy.phoneOption,
+    either: copy.eitherOption,
+  };
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
 
-    // Honeypot — bots fill this, humans never see it
     if (String(data.get("company_website") ?? "").trim()) {
       setStatus("success");
-      setMessage("Thank you. We will get back to you shortly.");
+      setMessage(copy.success);
       form.reset();
       setPreference("email");
       return;
@@ -45,26 +45,22 @@ export function ContactForm() {
 
     if (!name || !email || !request) {
       setStatus("error");
-      setMessage("Name, email and project brief are required.");
+      setMessage(copy.required);
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setStatus("error");
-      setMessage("Enter a valid email so we can reply.");
+      setMessage(copy.invalidEmail);
       return;
     }
     if ((preferred === "phone" || preferred === "either") && !phone) {
       setStatus("error");
-      setMessage(
-        preferred === "phone"
-          ? "Add a phone number so we can call you."
-          : "Add a phone number, or choose email as the preferred contact method.",
-      );
+      setMessage(preferred === "phone" ? copy.phoneRequired : copy.eitherPhone);
       return;
     }
     if (!ACCESS_KEY) {
       setStatus("error");
-      setMessage("Request inbox is not configured yet. Please try again later.");
+      setMessage(copy.notConfigured);
       return;
     }
 
@@ -80,13 +76,14 @@ export function ContactForm() {
         },
         body: JSON.stringify({
           access_key: ACCESS_KEY,
-          subject: `Axis BIM request from ${name}`,
+          subject: `Axis BIM request (${locale}) from ${name}`,
           from_name: "Axis BIM Solutions website",
           name,
           email,
-          phone: phone || "Not provided",
-          company: company || "Not provided",
-          preferred_contact: PREFERENCE_LABELS[preferred] ?? preferred,
+          phone: phone || copy.notProvided,
+          company: company || copy.notProvided,
+          preferred_contact: preferenceLabels[preferred] ?? preferred,
+          language: locale,
           message: request,
           replyto: email,
           botcheck: false,
@@ -101,12 +98,14 @@ export function ContactForm() {
       form.reset();
       setPreference("email");
       setStatus("success");
-      setMessage("Thank you. We will get back to you shortly.");
+      setMessage(copy.success);
     } catch {
       setStatus("error");
-      setMessage("Could not send the request. Please try again in a moment.");
+      setMessage(copy.sendFailed);
     }
   }
+
+  const phoneRequired = preference === "phone" || preference === "either";
 
   return (
     <form
@@ -125,16 +124,22 @@ export function ContactForm() {
 
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-          Name *
-          <Input name="name" autoComplete="name" placeholder="Jordan Lee" className="h-10 bg-panel" disabled={status === "loading"} />
+          {copy.name} *
+          <Input
+            name="name"
+            autoComplete="name"
+            placeholder={copy.namePlaceholder}
+            className="h-10 bg-panel"
+            disabled={status === "loading"}
+          />
         </label>
         <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-          Email *
+          {copy.email} *
           <Input
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="jordan@firm.com"
+            placeholder={copy.emailPlaceholder}
             className="h-10 bg-panel"
             disabled={status === "loading"}
           />
@@ -142,10 +147,8 @@ export function ContactForm() {
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-          Phone {(preference === "phone" || preference === "either") && "*"}
-          {preference === "email" ? (
-            <span className="font-normal text-steel/70"> (optional)</span>
-          ) : null}
+          {copy.phone} {phoneRequired ? "*" : null}
+          {!phoneRequired ? <span className="font-normal text-steel/70"> {copy.optional}</span> : null}
           <Input
             name="phone"
             type="tel"
@@ -156,11 +159,11 @@ export function ContactForm() {
           />
         </label>
         <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-          Company <span className="font-normal text-steel/70">(optional)</span>
+          {copy.company} <span className="font-normal text-steel/70">{copy.optional}</span>
           <Input
             name="company"
             autoComplete="organization"
-            placeholder="Acme Design Group"
+            placeholder={copy.companyPlaceholder}
             className="h-10 bg-panel"
             disabled={status === "loading"}
           />
@@ -168,13 +171,13 @@ export function ContactForm() {
       </div>
 
       <fieldset className="space-y-2" disabled={status === "loading"}>
-        <legend className="text-xs font-medium text-steel">Preferred contact method *</legend>
+        <legend className="text-xs font-medium text-steel">{copy.preferred} *</legend>
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-4">
           {(
             [
-              ["email", "Email"],
-              ["phone", "Phone"],
-              ["either", "Either"],
+              ["email", copy.emailOption],
+              ["phone", copy.phoneOption],
+              ["either", copy.eitherOption],
             ] as const
           ).map(([value, label]) => (
             <label key={value} className="inline-flex items-center gap-2 text-sm text-[#3c4658]">
@@ -193,18 +196,18 @@ export function ContactForm() {
       </fieldset>
 
       <label className="flex flex-col gap-1.5 text-xs font-medium text-steel">
-        Project brief *
+        {copy.brief} *
         <Textarea
           name="request"
           rows={3}
-          placeholder="Building type, stage (SD/DD/CD), tools and what you need from us…"
+          placeholder={copy.briefPlaceholder}
           className="min-h-24 bg-panel py-2"
           disabled={status === "loading"}
         />
       </label>
       <div className="flex flex-col gap-2 pt-1">
         <Button type="submit" size="lg" className="h-10 w-fit rounded px-5" disabled={status === "loading"}>
-          {status === "loading" ? "Sending…" : "Submit request"}
+          {status === "loading" ? copy.sending : copy.submit}
         </Button>
         {status === "success" && (
           <p className="border border-signal/30 bg-accent px-3 py-2 text-sm text-signal-deep" role="status">
