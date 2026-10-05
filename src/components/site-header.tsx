@@ -55,18 +55,21 @@ export function SiteHeader({
           ) : null}
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 md:px-8">
-        <a href="#top" className="flex min-w-0 flex-1 items-center" onClick={() => setOpen(false)}>
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-8">
+        <a href="#top" className="relative z-10 flex min-w-0 items-center" onClick={() => setOpen(false)}>
           <AxisLogo tone="onDark" subtitle={logoSubtitle} />
         </a>
-        <nav className="hidden items-center gap-7 text-sm text-white/85 lg:flex" aria-label="Primary">
+        <nav
+          className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 text-sm text-white/85 lg:flex"
+          aria-label="Primary"
+        >
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-white">
+            <a key={link.href} href={link.href} className="whitespace-nowrap hover:text-white">
               {link.label}
             </a>
           ))}
         </nav>
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="relative z-10 flex shrink-0 items-center gap-2">
           <a
             href="#contact"
             className="hidden h-10 items-center bg-[#4187d3] px-4 text-[11px] font-semibold tracking-[0.08em] whitespace-nowrap text-white uppercase hover:bg-[#3677c0] md:inline-flex"
