@@ -44,6 +44,16 @@
         "Clear roles for each person",
         "Support on the first live project"
       ]
+    },
+    {
+      "code": "05",
+      "title": "AI Integration & Workflow Automation",
+      "text": "We connect AI tools to the tasks your team already repeats, so checking models, sorting files and preparing reports takes less manual work.",
+      "points": [
+        "AI tools added to the workflow you already use",
+        "Repeated checks and file tasks run on their own",
+        "A setup the team can use without a specialist each time"
+      ]
     }
   ],
   "slides": [

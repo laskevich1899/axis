@@ -228,6 +228,15 @@ const en: Messages = {
       text: "We set clear rules, file names and responsibilities, then stay with your team until the process works without constant help.",
       points: ["Rules everyone can follow", "Clear roles for each person", "Support on the first live project"],
     },
+    "05": {
+      title: "AI Integration & Workflow Automation",
+      text: "We connect AI tools to the tasks your team already repeats, so checking models, sorting files and preparing reports takes less manual work.",
+      points: [
+        "AI tools added to the workflow you already use",
+        "Repeated checks and file tasks run on their own",
+        "A setup the team can use without a specialist each time",
+      ],
+    },
   },
 };
 
@@ -367,6 +376,15 @@ const pl: Messages = {
       title: "Wdrożenie BIM",
       text: "Ustalamy jasne zasady, nazwy plików i odpowiedzialności, a potem zostajemy z zespołem, aż proces działa bez stałego wsparcia.",
       points: ["Zasady, których da się przestrzegać", "Jasne role dla każdej osoby", "Wsparcie przy pierwszym żywym projekcie"],
+    },
+    "05": {
+      title: "Integracja AI i automatyzacja pracy",
+      text: "Podłączamy narzędzia AI do zadań, które zespół i tak powtarza, żeby sprawdzanie modeli, porządkowanie plików i raporty zajmowały mniej ręcznej pracy.",
+      points: [
+        "Narzędzia AI w procesie, którego już używacie",
+        "Powtarzalne kontrole i prace na plikach robią się same",
+        "Ustawienie, z którego zespół korzysta bez specjalisty za każdym razem",
+      ],
     },
   },
 };
@@ -515,6 +533,15 @@ const de: Messages = {
         "Regeln, denen alle folgen können",
         "Klare Rollen für jede Person",
         "Unterstützung beim ersten laufenden Projekt",
+      ],
+    },
+    "05": {
+      title: "KI-Integration und Workflow-Automatisierung",
+      text: "Wir schließen KI-Werkzeuge an die Aufgaben an, die Ihr Team ohnehin wiederholt, damit Prüfungen, Dateien sortieren und Berichte weniger Handarbeit brauchen.",
+      points: [
+        "KI-Werkzeuge im Ablauf, den Sie schon nutzen",
+        "Wiederkehrende Prüfungen und Dateiaufgaben laufen von selbst",
+        "Eine Einrichtung, die das Team ohne Spezialisten jedes Mal nutzen kann",
       ],
     },
   },
