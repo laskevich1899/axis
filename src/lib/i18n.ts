@@ -94,7 +94,7 @@ export type Messages = {
     sendFailed: string;
     notProvided: string;
   };
-  footer: { services: string; method: string; request: string; admin: string };
+  footer: { services: string; method: string; request: string };
   services: Record<string, ServiceCopy>;
 };
 
@@ -198,7 +198,7 @@ const en: Messages = {
     sendFailed: "Could not send the request. Please try again in a moment.",
     notProvided: "Not provided",
   },
-  footer: { services: "Services", method: "How we work", request: "Send a project request", admin: "Admin" },
+  footer: { services: "Services", method: "How we work", request: "Send a project request" },
   services: {
     "01": {
       title: "Model coordination",
@@ -343,7 +343,7 @@ const pl: Messages = {
     sendFailed: "Nie udało się wysłać zapytania. Spróbuj za chwilę.",
     notProvided: "Nie podano",
   },
-  footer: { services: "Usługi", method: "Jak pracujemy", request: "Wyślij zapytanie o projekt", admin: "Admin" },
+  footer: { services: "Usługi", method: "Jak pracujemy", request: "Wyślij zapytanie o projekt" },
   services: {
     "01": {
       title: "Koordynacja modelu",
@@ -496,7 +496,6 @@ const de: Messages = {
     services: "Leistungen",
     method: "So arbeiten wir",
     request: "Projektanfrage senden",
-    admin: "Admin",
   },
   services: {
     "01": {
